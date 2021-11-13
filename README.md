@@ -2,6 +2,8 @@
 
 Project_1 : for CSE311 course (NSU)
 
+Features:
+
 Contributors: Md. Maruf Bin Salim Bhuiyan & Farhan Tahmid.
 Technology: Next.js Framework
 
