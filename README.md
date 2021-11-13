@@ -3,6 +3,7 @@
 Project_1 : for CSE311 course (NSU)
 
 Features:
+  * Create dot.env 
   * Making a variable naming standardization
   * Creating a Login UI
 
