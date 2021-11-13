@@ -10,3 +10,4 @@ Technology: Next.js Framework
 Version Control: Git
 Current version: alpha_1.0.0
 Start Date: 11/11/2021
+Deadline for alpha_1.0.0: Not Applicable
