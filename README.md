@@ -3,6 +3,7 @@
 Project_1 : for CSE311 course (NSU)
 
 Features:
+  * Creating a Login UI
 
 Contributors: Md. Maruf Bin Salim Bhuiyan & Farhan Tahmid.
 Technology: Next.js Framework
