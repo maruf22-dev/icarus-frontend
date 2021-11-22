@@ -1,0 +1,19 @@
+// do not touch main.
+
+// create a branch name_function
+// go to that branch  and work
+
+// on being told: that main has changed.
+
+// go to main
+// fetch origin
+// pull
+
+// the go branch name_function
+// restore stash
+// commit changes
+
+// publish
+// create pull request
+
+// review code and merge if no conflict with main
