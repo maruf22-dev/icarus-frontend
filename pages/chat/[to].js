@@ -5,12 +5,13 @@ import { useState, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 import { AppContext, useAppContext } from '../../context/AppContext';
 import { useContext } from 'react';
+import Image from 'next/image'
 
 
 const SOCKET_LINK = "http://localhost:3001";
 const socket = io.connect(SOCKET_LINK);
 
-export default function chat(props) {
+export default function Chat(props) {
 
 
     let { profileName } = useAppContext();
@@ -89,7 +90,7 @@ export default function chat(props) {
                                             className={styles.message_container}>
                                             <div className={styles.message_header_container}>
                                                 <div className={styles.profile_image_holder}>
-                                                    <img className={styles.profile_image} src={currentMessage?.profileImageLink || "../default_profile_pic.gif"}></img>
+                                                    <Image className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"}/>
                                                 </div>
                                                 <div className={styles.message_metadata_holder}>
                                                     <p className={styles.profile_name}>{currentMessage?.senderName}</p>

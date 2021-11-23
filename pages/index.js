@@ -15,21 +15,22 @@ export default function Home() {
   // localhost:3000/chat/1
   const Router = useRouter();
 
+ 
+
   async function timeout(delay) {
     return new Promise( res => setTimeout(res, delay) );
-  }
-
-  useEffect(async () => {   
+  } 
+  useEffect(async () => {  
     await timeout(2500);
-    Router.push("/chat/1");
-  }, []) 
+    Router.push("/chat/development");
+  }, [Router]) 
 
   // useEffect : 
 
   return (
     <div className={styles.container}>
       <div className={styles.loading_container}>
-        <img className={styles.loading_image} src="home_page_loading.gif"></img>
+        <Image className={styles.loading_image} src="home_page_loading.gif" alt=""/>
         <div>
           <h2>Recovering Profile Information . . .</h2>
         </div>
