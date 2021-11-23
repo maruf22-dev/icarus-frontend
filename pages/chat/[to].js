@@ -1,7 +1,7 @@
 import styles from '../../styles/chat.module.css'
 const io = require("socket.io-client");
 import InputEmoji from 'react-input-emoji';
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 import { AppContext, useAppContext } from '../../context/AppContext';
 import { useContext } from 'react';
@@ -69,11 +69,10 @@ export default function Chat(props) {
             setMessages((messages) => [...messages, recievedMessage]);
         });
     }, [socket]);
-    
-    useEffect(()=>
-    {
+
+    useEffect(() => {
         scrollTextRef?.current?.scrollIntoView();;
-    },[messages])
+    }, [messages])
 
 
     return (
@@ -92,20 +91,27 @@ export default function Chat(props) {
                                     return (
                                         <div
                                             key={currentMessage?.messageID}
-                                            className={styles.message_container}>
-                                            <div className={styles.message_header_container}>
-                                                <div className={styles.profile_image_holder}>
-                                                    <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"}/>
+                                            className={` ${styles.message_container} ${currentMessage?.senderID === senderID ? styles.self : ''}`}>
+                                            <div className={styles.message_main}>
+                                                <div className={styles.message_header_container}>
+                                                    <div className={styles.profile_image_holder}>
+                                                        <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"} />
+                                                    </div>
+                                                    <div className={styles.message_metadata_holder}>
+                                                        <p className={styles.profile_name}>{currentMessage?.senderName}</p>
+                                                        <p className={styles.message_timestamp}>{`${currentMessage?.senderID === senderID ? 'sent at' : 'recieved at'} ${getFormattedDateFromMillis(currentMessage?.timestamp)}`}</p>
+                                                    </div>
                                                 </div>
-                                                <div className={styles.message_metadata_holder}>
-                                                    <p className={styles.profile_name}>{currentMessage?.senderName}</p>
-                                                    <p className={styles.message_timestamp}>{`${currentMessage?.senderID === senderID ? 'sent at' : 'recieved at'} ${getFormattedDateFromMillis(currentMessage?.timestamp)}`}</p>
+                                                <div className={`${styles.message}`}>
+                                                    {currentMessage?.messageText}
                                                 </div>
                                             </div>
-                                            <div className={`${styles.message}  ${currentMessage?.senderID === senderID ? styles.self : ''}`}>
-                                                {currentMessage?.messageText}
+                                            <div className={styles.message_space}>
                                             </div>
+
                                         </div>
+
+
                                     )
                                 })
                             }
