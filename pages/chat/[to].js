@@ -90,7 +90,7 @@ export default function Chat(props) {
                                             className={styles.message_container}>
                                             <div className={styles.message_header_container}>
                                                 <div className={styles.profile_image_holder}>
-                                                    <Image className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"}/>
+                                                    <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"}/>
                                                 </div>
                                                 <div className={styles.message_metadata_holder}>
                                                     <p className={styles.profile_name}>{currentMessage?.senderName}</p>

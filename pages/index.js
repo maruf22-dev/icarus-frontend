@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.loading_container}>
-        <Image className={styles.loading_image} src="home_page_loading.gif" alt=""/>
+        <img className={styles.loading_image} height={100} src="/home_page_loading.gif" alt=""/>
         <div>
           <h2>Recovering Profile Information . . .</h2>
         </div>
