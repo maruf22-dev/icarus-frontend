@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import Image from 'next/image'
 
 
-const SOCKET_LINK = "http://localhost:3001";
+const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
 const socket = io.connect(SOCKET_LINK);
 
 export default function Chat(props) {

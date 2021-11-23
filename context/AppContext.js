@@ -4,7 +4,7 @@ export const AppContext = createContext();
 
 export function AppWrapper({ children }) {
 
-  const [profileName, setProfileName] = useState("Md. Maruf Bin Salim");
+  const [profileName, setProfileName] = useState("user");
 
   let sharedState = {
       profileName,
