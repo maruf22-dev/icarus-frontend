@@ -1,7 +1,7 @@
 import styles from '../../styles/chat.module.css'
 const io = require("socket.io-client");
 import InputEmoji from 'react-input-emoji';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef} from 'react'
 import { v4 as uuid } from 'uuid'
 import { AppContext, useAppContext } from '../../context/AppContext';
 import { useContext } from 'react';
@@ -18,6 +18,7 @@ export default function Chat(props) {
     let { isGroup, senderID, receiverID, groupID, threadName } = props;
     const [text, setText] = useState("");
     const [messages, setMessages] = useState([]);
+    let scrollTextRef = useRef();
 
 
     let getFormattedDateFromMillis = (millis) => {
@@ -67,8 +68,12 @@ export default function Chat(props) {
             console.log("Recieved a new message from socket! \n");
             setMessages((messages) => [...messages, recievedMessage]);
         });
-
     }, [socket]);
+    
+    useEffect(()=>
+    {
+        scrollTextRef?.current?.scrollIntoView();;
+    },[messages])
 
 
     return (
@@ -104,6 +109,7 @@ export default function Chat(props) {
                                     )
                                 })
                             }
+                            <div ref={scrollTextRef}></div>
                         </div>
                         <div spellCheck="false" className={styles.chat_control_bar}>
                             <div className={styles.message_bar_holder}>
