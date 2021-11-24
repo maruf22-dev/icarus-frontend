@@ -95,7 +95,7 @@ export default function Chat(props) {
                                             <div className={styles.message_main}>
                                                 <div className={styles.message_header_container}>
                                                     <div className={styles.profile_image_holder}>
-                                                        <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.gif"} />
+                                                        <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.jpg"} />
                                                     </div>
                                                     <div className={styles.message_metadata_holder}>
                                                         <p className={styles.profile_name}>{currentMessage?.senderName}</p>
@@ -131,7 +131,7 @@ export default function Chat(props) {
                                 />
                             </div>
                             <div className={styles.control_button_holder}>
-                                <button className={styles.submit_button} onClick={sendMessage}>💬</button>
+                                <button className={styles.message_submit_button} onClick={sendMessage}>💬</button>
                             </div>
                         </div>
                     </div>
