@@ -35,16 +35,7 @@ body {
   transform: translate(50vw, -3vh);
   background-color: black;
 }
-/* for later */
-/* .react-emoji-picker--container
-{
-  float: right;
-  max-width: 8vw;
-  transform: translateY(10px);
-  transform: translateX(100vw);
-  background-color: black;
-} */
-/* works awsome in smaller view */
+
 .react-emoji-picker .emoji-mart-light
 {
   max-width: 320px;
@@ -93,4 +84,45 @@ body {
   background-color: #1a1b1d;
   border-bottom: 2px solid #b8b8b8;
 }
-/* emoji picker :end */
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+  .react-emoji-picker--container
+  {
+    float: right;
+    max-width: 5vw;
+    transform: translateY(10px);
+    transform: translateX(90vw);
+    background-color: black;
+  }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  .react-emoji-picker--container
+  {
+    max-width: 6vw;
+    transform: translateY(10px);
+    transform: translateX(99vw);
+    background-color: black;
+  }
+        
+}
