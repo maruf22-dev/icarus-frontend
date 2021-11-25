@@ -19,6 +19,7 @@ export default function Chat(props) {
     const [text, setText] = useState("");
     const [messages, setMessages] = useState([]);
     let scrollTextRef = useRef();
+    let inputBarRef = useRef();
 
 
     let getFormattedDateFromMillis = (millis) => {
@@ -54,6 +55,7 @@ export default function Chat(props) {
 
     let handleMessageBarChange = (event) => {
         setText(event);
+        inputBarRef.current.focus();
     }
 
     useEffect(() => {
@@ -70,6 +72,12 @@ export default function Chat(props) {
         });
     }, [socket]);
 
+    useEffect(()=>
+    {
+        inputBarRef.current.focus();
+
+    },[]);
+
     useEffect(() => {
         scrollTextRef?.current?.scrollIntoView({behavior: 'smooth'});;
     }, [messages])
@@ -79,7 +87,7 @@ export default function Chat(props) {
         <>
             <div className={styles.chat_page}>
                 <div className={styles.chat_top_bar}>
-                    <p className={styles.page_title}>{threadName}</p>
+                    <p className={styles.page_title}>{threadName}Chat</p>
                 </div>
                 <div className={styles.chat_main}>
                     <div className={styles.chat_options}>
@@ -120,6 +128,7 @@ export default function Chat(props) {
                         <div spellCheck="false" className={styles.chat_control_bar}>
                             <div className={styles.message_bar_holder}>
                                 <InputEmoji className={styles.message_bar}
+                                    ref={inputBarRef}
                                     borderColor={"#000000"}
                                     height={60}
                                     placeholder="Type a message"
