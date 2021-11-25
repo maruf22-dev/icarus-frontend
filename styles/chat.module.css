@@ -243,17 +243,17 @@
     }
     .message_main
     {
-        width: 180%;
-        max-width: 180%;
-        min-width: 180%;
+        width: 160%;
+        max-width: 160%;
+        min-width: 160%;
     }
     .message_space
-    {   width: 180%;
+    {   width: 160%;
         display: none;
     }
     .self .message_main
     {
-        transform: translateX(10%);
+        transform: translateX(20%);
     }
     .self .message_space
     {
