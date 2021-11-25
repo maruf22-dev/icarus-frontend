@@ -71,7 +71,7 @@ export default function Chat(props) {
     }, [socket]);
 
     useEffect(() => {
-        scrollTextRef?.current?.scrollIntoView();;
+        scrollTextRef?.current?.scrollIntoView({behavior: 'smooth'});;
     }, [messages])
 
 
