@@ -1,3 +1,79 @@
+.invinsible
+{
+    visibility: hidden;
+}
+.chat_options_backdrop
+{
+    position: fixed;
+    min-height: 100vh;
+    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    background-color: #23272a;
+    z-index: -100;
+}
+.backdrop_page_title_holder
+{
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+.backrop_page_title
+{
+    margin: 0;
+    font-size: 1rem;
+    text-decoration: underline;
+    position: absolute;
+    top: 50%;
+    color: #b8b8b8;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-weight: bolder;
+}
+.backdrop_top_bar
+{
+    height: 10%;
+    min-height: 10%;
+    max-height: 10%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: #23272a;
+}
+.option_close_button_holder
+{
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    display: grid;
+    place-items: center;
+}
+.option_close_button 
+{
+    height: 6vh;
+    min-height: 6vh;
+    max-height: 6vh;
+    aspect-ratio: 1;
+    padding: 0px;
+    border:none;
+    background-color:transparent;
+    outline:none;
+
+}
+.option_close_button img
+{
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+}
 .chat_page
 {
     width: 100vw;
@@ -16,15 +92,115 @@
 .chat_top_bar
 {
     height: 10%;
+    width: 100%;
     min-height: 10%;
     max-height: 10%;
-    background-color: #1a1b1d;
     border-bottom: 1px solid #000000;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.top_bar_left
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    max-height: 100%;
+}
+.home_button_holder
+{
+    display: grid;
+    place-items: center;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+}
+.home_button
+{
+    height: 6vh;
+    min-height: 6vh;
+    max-height: 6vh;
+    aspect-ratio: 1;
+    padding: 0px;
+    border:none;
+    background-color:transparent;
+    outline:none;
+}
+.home_button img
+{
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+}
+.option_button_holder
+{
+    display: grid;
+    place-items: center;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    z-index: -1;
+}
+.option_button
+{
+    height: 6vh;
+    min-height: 6vh;
+    max-height: 6vh;
+    aspect-ratio: 1;
+    padding: 0px;
+    border:none;
+    background-color:transparent;
+    outline:none;
+}
+.option_button img
+{
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+}
+.page_title_holder
+{
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    place-items: center;
 }
 .page_title
 {
-    padding: .5em;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 150%;
+    font-weight: bolder;
+}
+.top_bar_right
+{
+    margin: 0;
+    display: grid;
+    height: 10vh;
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #000000;
+}
+.thread_title
+{
+    font-size: 140%;
     font-weight: bolder;
 }
 .chat_main
@@ -38,12 +214,205 @@
     justify-items: center;
     grid-template-columns: 1fr 3fr;
 }
+
 .chat_options
 {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     background-color: #2c2f33;
+    border-right: 1px solid #000000;
+}
+.option_container
+{
+    width: 100%;
+    height: 8%;
+    min-height: 8%;
+    max-height: 8%;
+}
+.searchbar_container
+{
+    width: 100%;
+    height: 8%;
+    min-height: 8%;
+    max-height: 8%;
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid #000000;
+}
+.searchbar 
+{
+    max-height: 100%;
+    width: 95%;
+    color: #b8b8b8;
+    margin-bottom: 1px;
+    background-color: #2c2f33;
+    outline: none;
+    padding: 1.5%;
+    border-radius: 21px;
+    font-weight: 500;
+    font-size: large;
+    text-align: center;
+    border: .5px solid #888888;
+}
+.chat_option_container
+{
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #000000;
+}
+.search_option
+{
+    position: relative;;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    max-width: 100%;   
+    min-width: 100%;
+    display: grid;
+    place-items: center;
+    justify-content: end;
+    padding-right: 10%;
+}
+.settings_option
+{
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    max-width: 100%;   
+    min-width: 100%;
+    display: grid;
+    place-items: center;
+    justify-content: start;
+    padding-left: 10%;
+    border-left: 1px solid #000000;
+    
+}
+.search_option img
+{
+    height: 60%;
+    min-height: 60%;
+    max-height: 60%;
+    aspect-ratio: 1;
+    border-radius: 5px;
+}
+.settings_option img
+{
+    height: 60%;
+    min-height: 60%;
+    max-height: 60%;
+    aspect-ratio: 1;
+    border-radius: 5px;
+}
+.selected_option
+{
+    background-color: #23272a;
+}
+.search_context_holder
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    width: 100%;
+    height: 5%;
+    min-height: 5%;
+    max-height: 5%;
+    border-bottom: 1px solid #000000;
+    overflow: hidden;
+}
+.search_context
+{
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-left: 1px solid #000000;
+}
+.context_paragraph
+{
+    font-size: 95%;
+    font-weight: 700;
+    color: #b8b8b8;
+}
+.selected_context
+{
+    background-color: #23272a;
+}
+.search_result_container
+{
+    width: 100%;
+    height: 79%;
+    min-height: 79%;
+    max-height: 100%;
+    overflow: auto;
+    font-display: grid;
+    place-items: center;
+}
+.search_result_container::-webkit-scrollbar {
+    display: none;
+}
+.search_result 
+{
+    min-height: 10%;
+    max-height: 10%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    border-bottom: 1px solid black;
+    background-color: #23272a;
+    margin-bottom: 5px;
+}
+
+.context_profile_picture_container
+{
+    max-height: 100%;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+}
+.context_profile_picture_container img
+{
+    max-height: 90%;
+    max-width: 90%;
+    padding-left: 5%;
+    border-radius: 50%;
+}
+.context_threadname_container
+{
+    margin-left: 5%;
+    max-height: 100%;
+    max-width: 90%;
+    display: grid;
+    place-items: center;
+    background-color: #16161670;
+}
+.goto_button_container
+{
+    max-height: 100%;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+}
+.goto_button_container img
+{
+    max-height: 90%;
+    max-width: 90%;
 }
 .chat_feed
 {
@@ -233,9 +602,30 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+    .chat_top_bar
+    {
+        min-height: 10%;
+        max-height: 10%;
+        grid-template-columns: 1fr;
+    }
+    .top_bar_left
+    {
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+    .top_bar_right
+    {
+        display: none;
+    }
+    .thread_title
+    {
+        font-size: medium;
+    }
     .chat_main
     {
         grid-template-columns: 1fr;
+        min-height: 90%;
+        max-height: 90%;
     }
     .chat_options
     {
@@ -263,6 +653,19 @@
     {
         padding: 8px;
         margin-left: 8px;
+    }
+    .option_button_holder
+    {
+        z-index: 0;
+    }
+    .show_backdrop
+    {
+        z-index: 100;
+    }
+    .page_title_holder
+    {
+        display: grid;
+        place-items: center;
     }
 }
 
