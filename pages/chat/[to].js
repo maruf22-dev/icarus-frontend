@@ -157,7 +157,7 @@ export default function Chat(props) {
                         </div>
                         <div className={styles.option_button_holder}>
                             <button className={styles.option_button}>
-                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chat_option_icon.png"} />
+                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../cross_icon.png"} />
                             </button>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ export default function Chat(props) {
                         <div className={styles.option_container}>
                             <div className={styles.chat_option_container}>
                                 <div onClick={() => setSettingsSelected(false)} className={`${styles.search_option} ${!settingSelected ? styles.selected_option : styles.no_style}`}>
-                                    <img alt="" src={"../search_icon.png"} />
+                                    <img alt="" src={"../cross_icon.png"} />
                                 </div>
                                 <div onClick={() => setSettingsSelected(true)} className={`${styles.settings_option} ${!settingSelected ? styles.no_style : styles.selected_option}`}>
                                     <img alt="" src={"../chat_option_icon.png"} />
