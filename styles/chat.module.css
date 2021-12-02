@@ -468,9 +468,9 @@
 }
 .message_space
 {
-    width: 130%;
-    max-width: 130%;
-    min-width: 130%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
     order: 2;
 }
 .self .message_main
