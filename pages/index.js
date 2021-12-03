@@ -6,16 +6,7 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
 
-
-  // Link, Router.push
-
-
-  // localhost:3000
-
-  // localhost:3000/chat/1
   const Router = useRouter();
-
- 
 
   async function timeout(delay) {
     return new Promise( res => setTimeout(res, delay) );
@@ -24,8 +15,6 @@ export default function Home() {
     await timeout(2500);
     Router.push("/chat/development");
   }, [Router]) 
-
-  // useEffect : 
 
   return (
     <div className={styles.container}>
