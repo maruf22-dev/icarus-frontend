@@ -172,6 +172,7 @@
 {
     margin-left: .5rem;
     color: rgb(0, 255, 64);
+    cursor: pointer;
 }
 .register_link:hover
 {
