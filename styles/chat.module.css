@@ -321,7 +321,8 @@
 }
 .selected_option
 {
-    background-color: #23272a;
+    background-color: rgb(82, 82, 168);
+
 }
 .search_context_holder
 {
@@ -356,7 +357,7 @@
 }
 .selected_context
 {
-    background-color: #23272a;
+    background-color: rgb(82, 82, 168);
 }
 .search_result_container
 {
@@ -517,6 +518,9 @@
     border-radius: 5px 5px 0px 0px;
     border-top: 2px solid #b8b8b850;
     overflow-wrap: break-word;
+    background-color: rgb(82, 82, 168);
+    color: snow;
+
 }
 .profile_name
 {

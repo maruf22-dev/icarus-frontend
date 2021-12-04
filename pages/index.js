@@ -13,7 +13,7 @@ export default function Home() {
   } 
   useEffect(async () => {  
     await timeout(2500);
-    Router.push("/chat/development");
+    Router.push("/entrance");
   }, [Router]) 
 
   return (
