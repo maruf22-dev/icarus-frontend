@@ -38,7 +38,9 @@ export default function Entrance() {
             <div className={loginStyles.login_container}>
                 <div className={loginStyles.login_left}>
                     <div className={loginStyles.login_app_title_container}>
-                        <p>ReCrewit</p>
+                        <p>
+                            {"ReCrewit"}
+                        </p>
                     </div>
                     <div>
                         <img alt="logo" src="/logo.png"></img>
@@ -47,10 +49,16 @@ export default function Entrance() {
                 </div>
                 <div className={loginStyles.login_right}>
                     <div className={loginStyles.login_title_container}>
-                        <p>Welcome</p>
+                        <p>
+                            {"Welcome"}
+                        </p>
                     </div>
                     <div className={loginStyles.login_email_text_container}>
-                        <p>✉️ Email </p>
+                        <p>
+                            {
+                                "✉️ Email"
+                            }
+                        </p>
                     </div>
                     <div className={loginStyles.login_email_input_container}>
                         <input
@@ -62,7 +70,11 @@ export default function Entrance() {
                         />
                     </div>
                     <div className={loginStyles.login_password_text_container}>
-                        <p>🗝️ Password</p>
+                        <p>
+                            {
+                                "🗝️ Password"
+                            }
+                        </p>
                     </div>
                     <div className={loginStyles.login_password_input_container}>
                         <input type="password"
@@ -75,25 +87,31 @@ export default function Entrance() {
                     {
                         wrongLoginCredintial &&
                         <div className={loginStyles.login_warning_container}>
-                            <p>Wrong Password or Email ❌😔</p>
+                            <p>
+                                {"Wrong Password or Email ❌😔"}
+                            </p>
                         </div>
                     }
                     {
                         !wrongLoginCredintial &&
                         <div className={loginStyles.login_warning_container} style={{ textDecoration: "none" }}>
-                            <p>Login To your dashboard ❤️😉</p>
+                            <p>
+                                {
+                                    "Login To your dashboard ❤️😉"
+                                }
+                            </p>
                         </div>
                     }
                     <div className={loginStyles.login_button_container}>
                         <div className={loginStyles.login_button} onClick={verifyAndLogin}>Login</div>
                     </div>
                     <div className={loginStyles.login_to_signup_link_container}>
-                        <p>Don't have an account? </p>
+                        <p>{"Don't have an account? "}</p>
                         <p className={loginStyles.register_link} onClick={() => { setShowLoginComponent(false) }}>Register</p>
                     </div>
                     <div className={loginStyles.mobile_app_title_container}>
                         <div className={loginStyles.center_it}>
-                            <p>ReCrewit</p>
+                            <p>{"ReCrewit"}</p>
                         </div>
                         <div className={loginStyles.center_it}>
                             <img alt="logo" src="/logo.png"></img>
@@ -110,7 +128,7 @@ export default function Entrance() {
         const [signupEmail, setSignupEmail] = useState("");
         const [signupPassword, setSignupPassword] = useState("");
 
-        
+
         return (
             <div className={signupStyles.signup_container}>
                 <div className={signupStyles.signup_left}>
@@ -124,10 +142,10 @@ export default function Entrance() {
                 </div>
                 <div className={signupStyles.signup_right}>
                     <div className={signupStyles.signup_title_container}>
-                        <p>Sign Up</p>
+                        <p>{"Sign Up"}</p>
                     </div>
                     <div className={signupStyles.signup_email_username_text_container}>
-                        <p>✉️ Profile Name </p>
+                        <p>{"✉️ Profile Name"} </p>
                     </div>
                     <div className={signupStyles.signup_email_username_input_container}>
                         <input
@@ -139,7 +157,7 @@ export default function Entrance() {
                         />
                     </div>
                     <div className={signupStyles.signup_email_username_text_container}>
-                        <p>✉️ Email </p>
+                        <p>{"✉️ Email "}</p>
                     </div>
                     <div className={signupStyles.signup_email_username_input_container}>
                         <input
@@ -151,7 +169,7 @@ export default function Entrance() {
                         />
                     </div>
                     <div className={signupStyles.signup_password_text_container}>
-                        <p>🗝️ Password</p>
+                        <p>{"🗝️ Password"}</p>
                     </div>
                     <div className={signupStyles.signup_password_input_container}>
                         <input type="password"
@@ -164,31 +182,35 @@ export default function Entrance() {
                     {
                         wrongLoginCredintial &&
                         <div className={signupStyles.signup_warning_container}>
-                            <p>Wrong Password or Email ❌😔</p>
+                            <p>{"Wrong Password or Email ❌😔"}</p>
                         </div>
                     }
                     {
                         !wrongLoginCredintial &&
                         <div className={signupStyles.signup_warning_container} style={{ textDecoration: "none" }}>
-                            <p>Sign Up For A new Account ❤️😉</p>
+                            <p>
+                                {
+                                    "Sign Up For A new Account ❤️😉"
+                                }
+                            </p>
                         </div>
                     }
                     <div className={signupStyles.signup_button_container}>
                         <div className={signupStyles.signup_button}
-                         onClick={()=>{
-                             setSignupEmail("");
-                             setSignupPassword("");
-                             setSignupUsername("");
+                            onClick={() => {
+                                setSignupEmail("");
+                                setSignupPassword("");
+                                setSignupUsername("");
 
-                        }}>Signup</div>
+                            }}>{"Signup"}</div>
                     </div>
                     <div className={signupStyles.signup_to_signup_link_container}>
-                        <p>Already have an account? </p>
-                        <p className={signupStyles.register_link} onClick={() => { setShowLoginComponent(true)}}>Log In</p>
+                        <p>{"Already have an account? "}</p>
+                        <p className={signupStyles.register_link} onClick={() => { setShowLoginComponent(true) }}>Log In</p>
                     </div>
                     <div className={signupStyles.mobile_app_title_container}>
                         <div className={signupStyles.center_it}>
-                            <p>ReCrewit</p>
+                            <p>{"ReCrewit"}</p>
                         </div>
                         <div className={signupStyles.center_it}>
                             <img alt="logo" src="/logo.png"></img>
