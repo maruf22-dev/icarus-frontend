@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const recovery = () => {
+const Recovery = () => {
 
 
     const notify = (message) => toast.dark(message,
@@ -104,4 +104,4 @@ const recovery = () => {
     )
 }
 
-export default recovery
+export default Recovery

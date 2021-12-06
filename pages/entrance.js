@@ -28,7 +28,7 @@ export default function Entrance() {
             let verificationStatus = await verifyLoginCredintial();
             if (verificationStatus === true) {
                 setWrongLoginCredintial(false);
-                Router.push("/chat/development");
+                Router.push("/Dashboard");
                 return;
             }
             setWrongLoginCredintial(true);
@@ -110,7 +110,7 @@ export default function Entrance() {
                         <p className={loginStyles.register_link} onClick={() => { setShowLoginComponent(false) }}>Register</p>
                     </div>
                     <div className={styles.center_content}>
-                        <p style={{ color: "#ff6c1c", cursor : "pointer"}} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
+                        <p style={{ color: "#ff6c1c", cursor : "pointer"}} onClick={() => { Router.push("/Recovery") }} >Forgot Password?</p>
                     </div>
                     <div className={loginStyles.mobile_app_title_container}>
                         <div className={loginStyles.center_it}>
@@ -212,7 +212,7 @@ export default function Entrance() {
                         <p className={signupStyles.register_link} onClick={() => { setShowLoginComponent(true) }}>Log In</p>
                     </div>
                     <div className={styles.center_content}>
-                        <p style={{ color: "#ff6c1c", cursor: "pointer" }} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
+                        <p style={{ color: "#ff6c1c", cursor: "pointer" }} onClick={() => { Router.push("/Recovery") }} >Forgot Password?</p>
                     </div>
                     <div className={signupStyles.mobile_app_title_container}>
                         <div className={signupStyles.center_it}>

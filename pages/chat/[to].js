@@ -151,12 +151,12 @@ export default function Chat(props) {
                         <div className={styles.home_button_holder}>
                             <button className={`${styles.home_button} ${styles.pc}`}>
                                 <img onClick={() => {
-                                    Router.push("/dashboard");
+                                    Router.push("/Dashboard");
                                 }} alt="" src={"../home_icon.png"} />
                             </button>
                             <button className={`${styles.home_button} ${styles.mobile}`}>
                                 <img onClick={() => {
-                                    Router.push("/chatter");
+                                    Router.push("/Chatter");
                                 }} alt="" src={"../chatter_icon.png"} />
                             </button>
                         </div>
@@ -165,7 +165,7 @@ export default function Chat(props) {
                         </div>
                         <div className={styles.option_button_holder}>
                             <button className={`${styles.option_button} ${styles.pc}`}  onClick={() => {
-                                    Router.push("/chatter");
+                                    Router.push("/Chatter");
                                 }} >
                                 <img  alt="" src={"../chatter_icon.png"} />
                             </button>
