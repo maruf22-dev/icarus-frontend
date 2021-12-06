@@ -1,0 +1,153 @@
+.recovery_page {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rebeccapurple;
+    display: grid;
+    place-items: center;
+}
+
+.recovery_page::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("../public/entrance_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.email_changer {
+    height: 50%;
+    width: 30%;
+    background-color: #0a0a0a60;
+    padding: 10px;
+    border-radius: 15px;
+    border: 5px solid black;
+}
+
+.email_changer .title_container {
+    height: 35%;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+}
+
+.email_changer .title_container div:nth-child(1) {
+    width: 12%;
+    height: 90%;
+    background-color: black;
+    background-image: url("../public/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.email_changer .title_container div:nth-child(2) {
+    width: 95%;
+    height: 70%;
+    display: grid;
+    place-items: center;
+    background-color: rgb(93, 93, 209);
+    color: snow;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+.email_changer .change_password_button_holder {
+    height: 20%;
+    display: grid;
+    place-items: center;
+}
+
+.email_changer .change_password_button {
+    padding: calc(.5vh + .5vw);
+    background-color: rgb(93, 93, 209);
+    color: snow;
+    display: grid;
+    place-items: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: calc(.9vh + .8vw);
+}
+.email_input_container
+{
+    height: 30%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: calc(.9vh + .8vw);
+    font-weight: 600;
+    color: snow;
+}
+.email_input_container div{
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    display: grid;
+}
+.email_input_container input 
+{
+    width: 95%;
+    height: 90%;
+    border-radius: 10px;
+    text-align: center;
+    font-size: calc(.8vh + .8vw);
+    outline: none;
+    border: 3px solid black;
+}
+.go_back_container
+{
+    height: 10%;
+    display: grid;
+    place-items: center;
+    color: rgb(0, 255, 64);
+    cursor: pointer;
+}
+.go_back_container p:hover
+{
+    text-decoration: underline;
+
+}
+@media only screen and (max-width: 768px) {
+    .email_changer {
+        height: 100%;
+        width: 100%;
+        border-radius: 0px;
+        border: 3px solid black;
+    }
+
+    .email_changer .title_container {
+        height: 40%;
+    }
+    .email_changer .title_container div:nth-child(1) {
+        height: 40%;
+        width: unset;
+        aspect-ratio: 1;
+       
+    }
+    .email_changer .title_container div:nth-child(2) {
+        height: 60%;
+    }
+    .email_input_container
+    {
+        font-size: calc(2vh + 1vw);
+    }
+    .email_input_container input
+    {
+        height: 50%;
+        font-size: calc(2vh + 1vw);
+    }
+
+    .email_changer .change_password_button {
+        font-size: calc(2vh + 1vw);
+        padding: calc(1vh + 2vw);
+    }
+}

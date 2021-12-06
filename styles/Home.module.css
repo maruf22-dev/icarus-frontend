@@ -15,8 +15,8 @@
   align-items: center;
   justify-content: center;
 }
-.loading_container
-{
+
+.loading_container {
   height: 40%;
   max-height: 40%;
   min-height: 40%;
@@ -26,8 +26,8 @@
   display: grid;
   place-items: center;
 }
-.loading_image
-{
+
+.loading_image {
   height: 80%;
   width: 80%;
   border-radius: 10px;

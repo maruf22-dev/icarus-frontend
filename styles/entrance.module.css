@@ -1,5 +1,4 @@
-.entrance_page
-{
+.entrance_page {
     position: fixed;
     left: 0;
     top: 0;
@@ -7,9 +6,10 @@
     width: 100%;
     display: grid;
     place-items: center;
-   
+
 }
-.entrance_page::before {    
+
+.entrance_page::before {
     content: "";
     position: absolute;
     top: 0px;
@@ -17,8 +17,13 @@
     bottom: 0px;
     left: 0px;
     background-image: url("../public/entrance_bg.jpg");
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.7;
+    opacity: 0.8;
     z-index: -1;
+}
+
+.center_content {
+    display: grid;
+    place-items: center;
 }

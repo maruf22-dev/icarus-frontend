@@ -109,6 +109,9 @@ export default function Entrance() {
                         <p>{"Don't have an account? "}</p>
                         <p className={loginStyles.register_link} onClick={() => { setShowLoginComponent(false) }}>Register</p>
                     </div>
+                    <div className={styles.center_content}>
+                        <p style={{ color: "#ff6c1c", cursor : "pointer"}} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
+                    </div>
                     <div className={loginStyles.mobile_app_title_container}>
                         <div className={loginStyles.center_it}>
                             <p>{"ReCrewit"}</p>
@@ -145,7 +148,7 @@ export default function Entrance() {
                         <p>{"Sign Up"}</p>
                     </div>
                     <div className={signupStyles.signup_email_username_text_container}>
-                        <p>{"✉️ Profile Name"} </p>
+                        <p>{"🧔 Profile Name"} </p>
                     </div>
                     <div className={signupStyles.signup_email_username_input_container}>
                         <input
@@ -207,6 +210,9 @@ export default function Entrance() {
                     <div className={signupStyles.signup_to_signup_link_container}>
                         <p>{"Already have an account? "}</p>
                         <p className={signupStyles.register_link} onClick={() => { setShowLoginComponent(true) }}>Log In</p>
+                    </div>
+                    <div className={styles.center_content}>
+                        <p style={{ color: "#ff6c1c", cursor: "pointer" }} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
                     </div>
                     <div className={signupStyles.mobile_app_title_container}>
                         <div className={signupStyles.center_it}>
