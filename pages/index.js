@@ -7,12 +7,7 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
 
   const Router = useRouter();
-
-  async function timeout(delay) {
-    return new Promise( res => setTimeout(res, delay) );
-  } 
   useEffect(async () => {  
-    await timeout(2500);
     Router.push("/Entrance");
   }, [Router]) 
 
