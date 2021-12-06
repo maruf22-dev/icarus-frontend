@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 import { AppContext, useAppContext } from '../../context/AppContext';
 import { useContext } from 'react';
+import router, { useRouter } from 'next/router'
 import Image from 'next/image'
 
 
@@ -12,7 +13,7 @@ const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
 const socket = io.connect(SOCKET_LINK);
 
 export default function Chat(props) {
-
+    const Router = useRouter();
     let { profileName, profileID, allThreadContext, setAllThreadContext, updateThreadContextFromBackend } = useAppContext();
     let { senderID, receiverID, groupID, threadName } = props;
     const [text, setText] = useState("");
@@ -148,16 +149,26 @@ export default function Chat(props) {
                 <div className={styles.chat_top_bar}>
                     <div className={styles.top_bar_left}>
                         <div className={styles.home_button_holder}>
-                            <button className={styles.home_button}>
-                                <img onClick={() => { }} alt="" src={"../home_icon.png"} />
+                            <button className={`${styles.home_button} ${styles.pc}`}>
+                                <img onClick={() => { 
+                                    Router.push("/entrance");
+                                }} alt="" src={"../home_icon.png"} />
+                            </button>
+                            <button className={`${styles.home_button} ${styles.mobile}`}>
+                                <img onClick={() => { 
+                                    Router.push("/entrance");
+                                }} alt="" src={"../chatter_icon.png"} />
                             </button>
                         </div>
                         <div className={styles.page_title_holder}>
                             <p className={styles.page_title}>{"Chat"}</p>
                         </div>
                         <div className={styles.option_button_holder}>
-                            <button className={styles.option_button}>
-                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../cross_icon.png"} />
+                            <button className={`${styles.option_button} ${styles.pc}`}>
+                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chatter_icon.png"} />
+                            </button>
+                            <button className={`${styles.option_button} ${styles.mobile}`}>
+                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chat_option_icon.png"} />
                             </button>
                         </div>
                     </div>
