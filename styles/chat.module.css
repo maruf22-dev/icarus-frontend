@@ -5,13 +5,15 @@
 .pc {
     position: fixed;
     z-index: 100;
-    visibility: visible;
+}
+.pc img 
+{
+    cursor: pointer;
 }
 
 .mobile {
     position: fixed;
     z-index: -100;
-    visibility: hidden;
 }
 
 .chat_options_backdrop {
@@ -163,7 +165,6 @@
     width: 100%;
     max-width: 100%;
     min-width: 100%;
-    z-index: -1;
 }
 
 .option_button {

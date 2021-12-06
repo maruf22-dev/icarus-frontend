@@ -150,13 +150,13 @@ export default function Chat(props) {
                     <div className={styles.top_bar_left}>
                         <div className={styles.home_button_holder}>
                             <button className={`${styles.home_button} ${styles.pc}`}>
-                                <img onClick={() => { 
-                                    Router.push("/entrance");
+                                <img onClick={() => {
+                                    Router.push("/dashboard");
                                 }} alt="" src={"../home_icon.png"} />
                             </button>
                             <button className={`${styles.home_button} ${styles.mobile}`}>
-                                <img onClick={() => { 
-                                    Router.push("/entrance");
+                                <img onClick={() => {
+                                    Router.push("/chatter");
                                 }} alt="" src={"../chatter_icon.png"} />
                             </button>
                         </div>
@@ -164,8 +164,10 @@ export default function Chat(props) {
                             <p className={styles.page_title}>{"Chat"}</p>
                         </div>
                         <div className={styles.option_button_holder}>
-                            <button className={`${styles.option_button} ${styles.pc}`}>
-                                <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chatter_icon.png"} />
+                            <button className={`${styles.option_button} ${styles.pc}`}  onClick={() => {
+                                    Router.push("/chatter");
+                                }} >
+                                <img  alt="" src={"../chatter_icon.png"} />
                             </button>
                             <button className={`${styles.option_button} ${styles.mobile}`}>
                                 <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chat_option_icon.png"} />
