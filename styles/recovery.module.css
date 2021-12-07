@@ -4,22 +4,9 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: rebeccapurple;
     display: grid;
     place-items: center;
-}
-
-.recovery_page::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-image: url("../public/entrance_bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
+    background-color: #dddddd;
 }
 
 .email_changer {
