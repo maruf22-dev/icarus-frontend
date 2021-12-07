@@ -14,31 +14,26 @@ export function AppWrapper({ children }) {
     let demo = [
       {
         userID: uuid(),
-        groupID: null,
         threadName: "maruf",
         threadPictureLink: ""
       },
       {
         userID: uuid(),
-        groupID: null,
         threadName: "farhan",
         threadPictureLink: ""
         
       },
       {
         userID: null,
-        groupID: uuid(),
         threadName: "cse group",
         threadPictureLink: ""
       },
       {
         userID: null,
-        groupID: uuid(),
         threadName: "mat group",
         threadPictureLink: ""
       }
     ]
-    // demo = [...demo, ...demo, ...demo, ...demo, ...demo, ...demo, ...demo, ...demo];
     setAllThreadContext(demo);
   }
 

@@ -7,9 +7,9 @@ const Chatter = () => {
     return (
         <div>
             <h1 style={{color: "snow"}}>Chatter</h1>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/Dashboard')}}>go to Dashboard</p>
+            <p style={{color: "snow"}} onClick={()=>{Router.push('/dashboard')}}>go to Dashboard</p>
             <p style={{color: "snow"}} onClick={()=>{Router.push('/chat/development')}}>go to chat</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/Entrance')}}>log out</p>
+            <p style={{color: "snow"}} onClick={()=>{Router.push('/entrance')}}>log out</p>
             
         </div>
     )

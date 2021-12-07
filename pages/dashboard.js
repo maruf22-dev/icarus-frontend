@@ -7,9 +7,9 @@ const Dashboard = () => {
     return (
         <div>
             <h1 style={{color: "snow"}}>Dashboard</h1>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/Chatter')}}>go to chatter</p>
+            <p style={{color: "snow"}} onClick={()=>{Router.push('/chatter')}}>go to chatter</p>
             <p style={{color: "snow"}} onClick={()=>{Router.push('/chat/development')}}>go to chat</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/Entrance')}}>log out</p>
+            <p style={{color: "snow"}} onClick={()=>{Router.push('/entrance')}}>log out</p>
             
         </div>
     )

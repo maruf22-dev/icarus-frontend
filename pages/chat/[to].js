@@ -14,8 +14,9 @@ const socket = io.connect(SOCKET_LINK);
 
 export default function Chat(props) {
     const Router = useRouter();
-    let { profileName, profileID, allThreadContext, setAllThreadContext, updateThreadContextFromBackend } = useAppContext();
-    let { senderID, receiverID, groupID, threadName } = props;
+    let { profileName, profileID,
+         allThreadContext, setAllThreadContext,
+         updateThreadContextFromBackend } = useAppContext();
     const [text, setText] = useState("");
     const [messages, setMessages] = useState([]);
     const [optionPressed, setOptionPressed] = useState(false);
@@ -23,10 +24,13 @@ export default function Chat(props) {
     const [searchKeyword, selectSearchKeyword] = useState("");
     const [searchContext, setSearchContext] = useState("all");
     const [contextMessages, setContextMessages] = useState([]);
+
     let scrollTextRef = useRef();
     let inputBarRef = useRef();
-    threadName = "{ thread name }"
-    senderID = profileID;
+
+    let threadName = "{ thread name }"
+    let senderID = profileID;
+    let receiverID = null;
 
 
     let getFormattedDateFromMillis = (millis) => {
@@ -34,25 +38,26 @@ export default function Chat(props) {
         return date.toLocaleString();
     }
 
-    let getThreadId = (senderID, recieverID, groupID) => {
+    let getThreadId = (senderID, recieverID) => {
         let computed = "thread_";
-        if (groupID) computed = groupID;
-        else if (senderID < recieverID) computed = senderID + "_" + recieverID;
+        if (senderID < recieverID) computed = senderID + "_" + recieverID;
         else computed = recieverID + "_" + senderID;
         return computed;
     }
 
 
-    let threadID = getThreadId(senderID, receiverID, groupID);
+    let threadID = getThreadId(senderID, receiverID);
 
     let sendMessage = async (event) => {
-        if (text == "") return;
+
+        if (!text.trim()) return;
+
         socket.emit("send_to_thread", {
             messageID: "message_" + uuid(),
             senderID: senderID,
             senderName: profileName,
-            threadID: threadID,
-            profileImageLink: null,
+            receiverID: receiverID,
+            senderProfileImageLink: null,
             messageText: text,
             timestamp: Date.now(),
         });
@@ -63,30 +68,8 @@ export default function Chat(props) {
         setText(event);
         inputBarRef.current.focus();
     }
-    let filterMessageContextByKeyword = (allContext, keyword, searchContext) => {
-        let filtered = [];
-        for (let context in allContext) {
-            let words = allContext[context]?.threadName.toLowerCase().split(' ');
-            let shouldAdd = false;
-            for (let word in words)
-                shouldAdd = shouldAdd || (words[word].indexOf(keyword) == 0);
 
-            shouldAdd = shouldAdd || (allContext[context].threadName.toLowerCase().indexOf(keyword) != -1 && keyword.length > 1);
 
-            if (!shouldAdd) continue;
-
-            let isAProfile = Object.entries(allContext[context])[0][1] != null;
-            let isAGroup = Object.entries(allContext[context])[1][1] != null;
-            if (isAProfile && (searchContext === "people" || searchContext === "all")) {
-                filtered = [...filtered, allContext[context]];
-            }
-            if (isAGroup && (searchContext === "group" || searchContext === "all")) {
-                filtered = [...filtered, allContext[context]];
-            }
-
-        }
-        return filtered;
-    }
     let handleSearch = (event) => {
         let keyword = event?.target?.value;
         selectSearchKeyword(keyword);
@@ -94,8 +77,8 @@ export default function Chat(props) {
             setContextMessages([]);
             return;
         }
-        let filteredUsers = filterMessageContextByKeyword(allThreadContext, keyword.toLowerCase(), searchContext);
-        setContextMessages(filteredUsers);
+        // let filteredUsers = filterMessageContextByKeyword(allThreadContext, keyword.toLowerCase(), searchContext);
+        setContextMessages(allThreadContext);
     }
 
     useEffect(() => {
@@ -113,8 +96,8 @@ export default function Chat(props) {
     }, [socket]);
 
     useEffect(async () => {
-        inputBarRef.current.focus();
         await updateThreadContextFromBackend();
+        inputBarRef.current.focus();
     }, []);
 
     useEffect(() => {
@@ -151,12 +134,12 @@ export default function Chat(props) {
                         <div className={styles.home_button_holder}>
                             <button className={`${styles.home_button} ${styles.pc}`}>
                                 <img onClick={() => {
-                                    Router.push("/Dashboard");
+                                    Router.push("/dashboard");
                                 }} alt="" src={"../home_icon.png"} />
                             </button>
                             <button className={`${styles.home_button} ${styles.mobile}`}>
                                 <img onClick={() => {
-                                    Router.push("/Chatter");
+                                    Router.push("/chatter");
                                 }} alt="" src={"../chatter_icon.png"} />
                             </button>
                         </div>
@@ -164,10 +147,10 @@ export default function Chat(props) {
                             <p className={styles.page_title}>{"Chat"}</p>
                         </div>
                         <div className={styles.option_button_holder}>
-                            <button className={`${styles.option_button} ${styles.pc}`}  onClick={() => {
-                                    Router.push("/Chatter");
-                                }} >
-                                <img  alt="" src={"../chatter_icon.png"} />
+                            <button className={`${styles.option_button} ${styles.pc}`} onClick={() => {
+                                Router.push("/chatter");
+                            }} >
+                                <img alt="" src={"../chatter_icon.png"} />
                             </button>
                             <button className={`${styles.option_button} ${styles.mobile}`}>
                                 <img onClick={() => setOptionPressed(!optionPressed)} alt="" src={"../chat_option_icon.png"} />
@@ -272,7 +255,6 @@ export default function Chat(props) {
                                             </div>
                                             <div className={styles.message_space}>
                                             </div>
-
                                         </div>
 
 

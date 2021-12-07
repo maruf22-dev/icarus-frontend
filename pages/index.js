@@ -8,7 +8,7 @@ export default function Home() {
 
   const Router = useRouter();
   useEffect(async () => {  
-    Router.push("/Entrance");
+    Router.push("/entrance");
   }, [Router]) 
 
   return (
