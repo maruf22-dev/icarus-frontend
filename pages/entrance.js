@@ -20,7 +20,7 @@ export default function Entrance() {
         async function verifyLoginCredintial() {
             console.log(loginEmail);
             console.log(loginPassword);
-            let adminVerification = "maruf"
+            let adminVerification = "admin"
             return (loginEmail === adminVerification && loginPassword === adminVerification);
         }
 
