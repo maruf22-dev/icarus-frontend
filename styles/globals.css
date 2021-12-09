@@ -45,16 +45,16 @@ body {
   outline: none;
   border-width: 0px;
   word-break: break-all;
-  box-shadow: inset 0px 0px 0px 1px #888888;
+  /*box-shadow: inset 0px 0px 0px 1px #888888;
   -moz-box-shadow: inset 0px 0px 0px 1px #888888;
-  -webkit-box-shadow: inset 0px 0px 0px 1px #888888;
+  -webkit-box-shadow: inset 0px 0px 0px 1px #888888; */
 }
 
 .react-emoji-picker--container {
   float: right;
   max-width: 15vw;
   transform: translate(50vw, -3vh);
-  background-color: black;
+  /* background-color: rgb(255, 0, 0); */
 }
 
 .react-emoji-picker .emoji-mart-light {
@@ -64,12 +64,12 @@ body {
 .react-input-emoji--input {
   max-height: 20px;
   min-height: 20px;
-  color: #b8b8b8;
+  color: #000000;
   overflow-x: hidden;
   overflow-y: hidden;
   border-radius: 20px;
   word-break: break-all;
-  background-color: #1a1b1d;
+  background-color: #ffffff;
   box-shadow: inset 0px 0px 0px 1px #888888;
   -moz-box-shadow: inset 0px 0px 0px 1px #888888;
   -webkit-box-shadow: inset 0px 0px 0px 1px #888888;
@@ -81,15 +81,15 @@ body {
 }
 
 .react-emoji-picker .emoji-mart {
-  background-color: #1a1b1d;
+  background-color: #ffffff;
   border: 1px solid #0c0c0c;
 }
 
 .react-emoji-picker .emoji-mart-search input {
   width: 95%;
-  color: #b8b8b8;
+  color: #000000;
   margin-bottom: 1px;
-  background-color: #2c2f33;
+  background-color: #ffffff;
 
 }
 
@@ -98,13 +98,17 @@ body {
 }
 
 .react-emoji-picker .emoji-mart-search label {
-  background-color: #1a1b1d;
+  background-color: #000000;
 }
 
 .react-emoji-picker .emoji-mart-category-label span {
-  color: #b8b8b8;
-  background-color: #1a1b1d;
-  border-bottom: 2px solid #b8b8b8;
+  color: #000000;
+  background-color: #ffffff;
+  border-bottom: 1px solid #b8b8b8;
+}
+
+.emoji-mart-anchor-icon{
+  color: rgb(0, 0, 0);
 }
 
 /* Large Devices, Wide Screens */
@@ -118,12 +122,14 @@ body {
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
 
+  
+
   .react-emoji-picker--container {
     float: right;
     max-width: 5vw;
     transform: translateY(10px);
     transform: translateX(90vw);
-    background-color: black;
+    /* background-color: rgb(255, 0, 0); */
   }
 }
 

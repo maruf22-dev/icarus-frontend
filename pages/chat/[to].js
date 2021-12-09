@@ -189,24 +189,6 @@ export default function Chat(props) {
                                         onChange={(e) => { handleSearch(e) }} />
                                 </div>
 
-                                <div className={styles.search_context_holder}>
-                                    <div onClick={() => setSearchContext("all")}
-                                        className={`${styles.search_context}
-                                    ${searchContext === "all" ? styles.selected_context : styles.no_style}`}>
-                                        <p className={`${styles.context_paragraph}`}>All</p>
-                                    </div>
-                                    <div onClick={() => setSearchContext("people")}
-                                        className={`${styles.search_context}
-                                    ${searchContext === "people" ? styles.selected_context : styles.no_style}`}>
-                                        <p className={`${styles.context_paragraph}`} >People</p>
-                                    </div>
-                                    <div onClick={() => setSearchContext("group")}
-                                        className={`${styles.search_context}
-                                    ${searchContext === "group" ? styles.selected_context : styles.no_style}`}>
-                                        <p className={`${styles.context_paragraph}`}>Group</p>
-                                    </div>
-                                </div>
-
                                 <div className={styles.search_result_container}>
                                     {
                                         contextMessages.map((context, index) => {
@@ -219,9 +201,7 @@ export default function Chat(props) {
                                                     <div className={styles.context_threadname_container}>
                                                         <p>   {context?.threadName} </p>
                                                     </div>
-                                                    <div className={styles.goto_button_container}>
-                                                        <img alt="" src={"../chat_option_icon.png"} />
-                                                    </div>
+                                                    
                                                 </div>
                                             )
                                         })
@@ -241,20 +221,16 @@ export default function Chat(props) {
                                             className={` ${styles.message_container} ${currentMessage?.senderID === senderID ? styles.self : ''}`}>
                                             <div className={styles.message_main}>
                                                 <div className={styles.message_header_container}>
-                                                    <div className={styles.profile_image_holder}>
-                                                        <img className={styles.profile_image} alt="" src={currentMessage?.profileImageLink || "../default_profile_pic.jpg"} />
-                                                    </div>
                                                     <div className={styles.message_metadata_holder}>
                                                         <p className={styles.profile_name}>{currentMessage?.senderName}</p>
-                                                        <p className={styles.message_timestamp}>{`${currentMessage?.senderID === senderID ? 'sent at' : 'recieved at'} ${getFormattedDateFromMillis(currentMessage?.timestamp)}`}</p>
                                                     </div>
                                                 </div>
                                                 <div className={`${styles.message}`}>
                                                     {currentMessage?.messageText}
                                                 </div>
                                             </div>
-                                            <div className={styles.message_space}>
-                                            </div>
+                                            {/* <div className={styles.message_space}>
+                                            </div> */}
                                         </div>
 
 
@@ -267,9 +243,9 @@ export default function Chat(props) {
                             <div className={styles.message_bar_holder}>
                                 <InputEmoji className={styles.message_bar}
                                     ref={inputBarRef}
-                                    borderColor={"#000000"}
+                                    borderColor={"#ffffff"}
                                     height={60}
-                                    placeholder="Type a message"
+                                    placeholder="Text"
                                     spellcheck="false"
                                     fontSize={17}
                                     value={text}
@@ -278,7 +254,7 @@ export default function Chat(props) {
                                 />
                             </div>
                             <div className={styles.control_button_holder}>
-                                <button className={styles.message_submit_button} onClick={sendMessage}>💬</button>
+                                <div className={styles.message_submit_button} onClick={sendMessage}>Send</div>
                             </div>
                         </div>
                     </div>
