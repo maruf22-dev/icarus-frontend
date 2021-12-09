@@ -743,7 +743,7 @@
     display: none;
     font-family: "Montserrat", sans-serif;
   }
-  .message_bar_holder
+  .chat_control_bar
   {
     grid-template-columns: 4fr 1fr;
   }
