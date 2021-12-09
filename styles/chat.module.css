@@ -625,7 +625,7 @@
   max-width: 100%;
   min-height: 20%;
   max-height: 20%;
-  grid-template-columns: 10fr 2fr;
+  grid-template-columns: 4fr 1fr;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -757,6 +757,17 @@
   .page_title_holder {
     display: grid;
     place-items: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  .top_bar_left::before{
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: -1;
+    height: 0%;
+    width: 0%;
+    backdrop-filter: blur(0px) brightness(100%);
     font-family: "Montserrat", sans-serif;
   }
   
