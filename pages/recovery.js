@@ -29,12 +29,15 @@ const Recovery = () => {
     function EmailChanger() {
         return (
             <div className={styles.email_changer}>
+                <div className={styles.mobile_title_container}>
+                    <p> {"Domus"} </p>
+                </div>
                 <div className={styles.title_container}>
-                    <div></div>
-                    <div> {"Recover Password"} </div>
+                    <p>
+                        {"Recover Password"}
+                    </p>
                 </div>
                 <div className={styles.email_input_container}>
-                    <div>{"✉️ Email"}</div>
                     <div>
                         <input
                             placeholder="Enter your email"
@@ -55,12 +58,15 @@ const Recovery = () => {
     function SecurityCodeComponent() {
         return (
             <div className={styles.email_changer}>
+                <div className={styles.mobile_title_container}>
+                    <p> {"Domus"} </p>
+                </div>
                 <div className={styles.title_container}>
-                    <div></div>
-                    <div> {"Recover Password"} </div>
+                    <p>
+                        {"Recover Password"}
+                    </p>
                 </div>
                 <div className={styles.email_input_container}>
-                    <div>{"🛡️ Security Code"}</div>
                     <div>
                         <input
                             placeholder="Enter Security Code"
@@ -88,19 +94,25 @@ const Recovery = () => {
 
 
     return (
-        <div className={styles.recovery_page}>
-            {
-                showEmailChanger && (<EmailChanger></EmailChanger>)
-            }
-            {
-                showSecurityCodeComponent && (<SecurityCodeComponent></SecurityCodeComponent>)
-            }
+        <>
+            <div className={styles.recovery_page}>
 
-            <>
-                <ToastContainer />
-            </>
+                {
+                    showEmailChanger && (<EmailChanger></EmailChanger>)
+                }
+                {
+                    showSecurityCodeComponent && (<SecurityCodeComponent></SecurityCodeComponent>)
+                }
 
-        </div>
+                <>
+                    <ToastContainer />
+                </>
+
+            </div>
+            <div className={styles.recovery_app_title_container}>
+                <div> {"Domus"} </div>
+            </div>
+        </>
     )
 }
 

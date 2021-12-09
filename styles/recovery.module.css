@@ -7,134 +7,209 @@
     display: grid;
     place-items: center;
     background-color: #dddddd;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
 }
+
+.recovery_page::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0px;
+    opacity: 0.8;
+    z-index: -1;
+    height: 150%;
+    width: 150%;
+    background-color: rgb(255, 255, 255);
+    transform: rotate(15deg) translateX(-10%) translateY(40%);
+}
+
+.recovery_app_title_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    display: grid;
+    place-items: center;
+    font-size: calc(2.2vh + 2.2vw);
+    font-weight: bolder;
+    color: black;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+}
+
 
 .email_changer {
     height: 50%;
     width: 30%;
-    background-color: #0a0a0a60;
+    background-color: #ededed;
+    box-shadow: 2px 2px 50px 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    border-radius: 15px;
-    border: 5px solid black;
+   
 }
-
-.email_changer .title_container {
-    height: 35%;
+.mobile_title_container
+{
+    height: 20%;
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
+    visibility: hidden;
+    height: 0%;
+    border: none;
 }
-
-.email_changer .title_container div:nth-child(1) {
-    width: 12%;
-    height: 90%;
-    background-color: black;
-    background-image: url("../public/logo.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    border: 3px solid black;
-}
-
-.email_changer .title_container div:nth-child(2) {
-    width: 95%;
-    height: 70%;
+.email_changer .title_container {
+    height: 20%;
     display: grid;
+    grid-template-columns: 1fr;
     place-items: center;
-    background-color: rgb(93, 93, 209);
-    color: snow;
-    border-radius: 10px;
-    border: 3px solid black;
+    font-size: calc(1vh + 1vw);
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
+
+
+
 
 .email_changer .change_password_button_holder {
     height: 20%;
     display: grid;
     place-items: center;
+    position: relative;
+    margin-bottom: 2%;
 }
 
 .email_changer .change_password_button {
     padding: calc(.5vh + .5vw);
-    background-color: rgb(93, 93, 209);
-    color: snow;
     display: grid;
     place-items: center;
-    border: 3px solid black;
-    border-radius: 10px;
     cursor: pointer;
     font-size: calc(.9vh + .8vw);
+    border: none;
 }
-.email_input_container
-{
-    height: 30%;
+.change_password_button:hover {
+    box-shadow: 0 0 0 2px rgb(0, 0, 0);
+}
+
+.email_input_container {
+    height: 20%;
     width: 100%;
     display: grid;
     place-items: center;
     font-size: calc(.9vh + .8vw);
     font-weight: 600;
-    color: snow;
+    margin-bottom: 2%;
 }
-.email_input_container div{
+
+.email_input_container div {
     width: 100%;
     height: 100%;
     place-items: center;
     display: grid;
 }
-.email_input_container input 
-{
-    width: 95%;
-    height: 90%;
-    border-radius: 10px;
+
+.email_input_container input {
+    width: 90%;
+    height: 70%;
     text-align: center;
     font-size: calc(.8vh + .8vw);
     outline: none;
-    border: 3px solid black;
+    border: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
 }
-.go_back_container
-{
-    height: 10%;
+
+.go_back_container {
+    height: 20%;
     display: grid;
     place-items: center;
-    color: rgb(0, 255, 64);
     cursor: pointer;
+    color: black;
+    position: relative;
+    box-shadow: 0 0 0 1px transparent;
 }
-.go_back_container p:hover
-{
-    text-decoration: underline;
+
+
+.go_back_container p:hover {
+    padding: 4px;
+    box-shadow: 0 0 0 1px rgb(0, 0, 0);
 
 }
+
+
 @media only screen and (max-width: 768px) {
+    .recovery_app_title_container
+    {
+        display: none;
+    }
     .email_changer {
         height: 100%;
         width: 100%;
-        border-radius: 0px;
-        border: 3px solid black;
+        background-color: #dddddd;
+    }
+    .email_changer::before
+    {
+        content: "";
+        position: fixed;
+        top: 0%;
+        bottom: 0%;
+        left: 0px;
+        opacity: 0.8;
+        height: 150%;
+        width: 150%;
+        background-color: rgb(255, 255, 255);
+        transform: rotate(15deg) translateX(-10%) translateY(40%);
+        z-index: 0;
+    }
+    .mobile_title_container
+    {
+        height: 20%;
+        visibility: visible;
+        font-size: 34px;
     }
 
     .email_changer .title_container {
-        height: 40%;
+        height: 20%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: black;
+        font-size: 24px;
     }
-    .email_changer .title_container div:nth-child(1) {
-        height: 40%;
-        width: unset;
-        aspect-ratio: 1;
-       
-    }
-    .email_changer .title_container div:nth-child(2) {
-        height: 60%;
-    }
-    .email_input_container
-    {
+
+
+    .email_input_container {
+        position: relative;
         font-size: calc(2vh + 1vw);
     }
-    .email_input_container input
-    {
+
+    .email_input_container input {
+        position: relative;
+        font-size: calc(2vh + 1vw);
+        border: .05px rgb(212, 212, 212) solid;
         height: 50%;
-        font-size: calc(2vh + 1vw);
+
+    }
+    .go_back_container p
+    {
+        font-size: 24px;
+        box-shadow: 0 0 0 1px rgb(0, 0, 0);
+        padding: 4px;
+    }
+    .go_back_container p:hover
+    {
+        font-size: 24px;
+        box-shadow: 0 0 0 1px rgb(0, 0, 0);
+        padding: 4px;
     }
 
     .email_changer .change_password_button {
         font-size: calc(2vh + 1vw);
         padding: calc(1vh + 2vw);
+        box-shadow: 0 0 0 2px rgb(0, 0, 0);
+    }
+    .email_changer .change_password_button:hover {
+        box-shadow: 0 0 0 2px rgb(0, 0, 0);
     }
 }

@@ -42,26 +42,22 @@ export default function Entrance() {
                             {"Login Credentials"}
                         </p>
                     </div>
-                    <div>
-                        <img alt="logo" src="/logo.png"></img>
-                    </div>
-
                 </div>
                 <div className={loginStyles.login_right}>
-                <div className={loginStyles.mobile_app_title_container}>
+                    <div className={loginStyles.mobile_app_title_container}>
                         <div className={loginStyles.center_it}>
                             <p>{"Domus"}</p>
                         </div>
                     </div>
                     <div className={loginStyles.login_title_container}>
                         <p>
-                            {"Welcome"}
+                            {""}
                         </p>
                     </div>
                     <div className={loginStyles.login_email_text_container}>
                         <p>
                             {
-                                "✉️ Email"
+                                ""
                             }
                         </p>
                     </div>
@@ -77,7 +73,7 @@ export default function Entrance() {
                     <div className={loginStyles.login_password_text_container}>
                         <p>
                             {
-                                "🗝️ Password"
+                                ""
                             }
                         </p>
                     </div>
@@ -89,24 +85,12 @@ export default function Entrance() {
                             onChange={(e) => setLoginPassword(e.target.value)}
                         />
                     </div>
-                    {
-                        wrongLoginCredintial &&
-                        <div className={loginStyles.login_warning_container}>
-                            <p>
-                                {"Wrong Password or Email"}
-                            </p>
-                        </div>
-                    }
-                    {
-                        !wrongLoginCredintial &&
-                        <div className={loginStyles.login_warning_container} style={{ textDecoration: "none" }}>
-                            <p>
-                                {
-                                    ""
-                                }
-                            </p>
-                        </div>
-                    }
+                    <div className={loginStyles.login_warning_container}>
+                        <p>
+                            {wrongLoginCredintial ? "Wrong Password or Email" : ""}
+                        </p>
+                    </div>
+
                     <div className={loginStyles.login_button_container}>
                         <div className={loginStyles.login_button} onClick={verifyAndLogin}>Login</div>
                     </div>
@@ -135,31 +119,34 @@ export default function Entrance() {
                 <div className={signupStyles.signup_container}>
                     <div className={signupStyles.signup_left}>
                         <div className={signupStyles.signup_app_title_container}>
-                            <p>Domus</p>
-                        </div>
-                        <div>
-                            <img alt="logo" src="/logo.png"></img>
+                            <p>Create Account</p>
                         </div>
 
                     </div>
                     <div className={signupStyles.signup_right}>
+
+                        <div className={signupStyles.mobile_app_title_container}>
+                            <div className={signupStyles.center_it}>
+                                <p>{"Domus"}</p>
+                            </div>
+                        </div>
                         <div className={signupStyles.signup_title_container}>
-                            <p>{"Sign Up"}</p>
+                            <p>
+                                {""}
+                            </p>
                         </div>
-                        <div className={signupStyles.signup_email_username_text_container}>
-                            <p>{"🧔 Profile Name"} </p>
-                        </div>
+
                         <div className={signupStyles.signup_email_username_input_container}>
                             <input
                                 type="text"
-                                placeholder="username"
+                                placeholder="Username"
                                 spellCheck="false"
                                 value={signupUsername}
                                 onChange={(e) => setSignupUsername(e.target.value)}
                             />
                         </div>
                         <div className={signupStyles.signup_email_username_text_container}>
-                            <p>{"✉️ Email "}</p>
+                            <p>{""}</p>
                         </div>
                         <div className={signupStyles.signup_email_username_input_container}>
                             <input
@@ -171,7 +158,7 @@ export default function Entrance() {
                             />
                         </div>
                         <div className={signupStyles.signup_password_text_container}>
-                            <p>{"🗝️ Password"}</p>
+                            <p>{""}</p>
                         </div>
                         <div className={signupStyles.signup_password_input_container}>
                             <input type="password"
@@ -181,22 +168,13 @@ export default function Entrance() {
                                 onChange={(e) => setSignupPassword(e.target.value)}
                             />
                         </div>
-                        {
-                            wrongLoginCredintial &&
-                            <div className={signupStyles.signup_warning_container}>
-                                <p>{"Wrong Password or Email ❌😔"}</p>
-                            </div>
-                        }
-                        {
-                            !wrongLoginCredintial &&
-                            <div className={signupStyles.signup_warning_container} style={{ textDecoration: "none" }}>
-                                <p>
-                                    {
-                                        "Sign Up For A new Account ❤️😉"
-                                    }
-                                </p>
-                            </div>
-                        }
+
+
+                        <div className={signupStyles.signup_warning_container}>
+                            <p>
+                            </p>
+                        </div>
+
                         <div className={signupStyles.signup_button_container}>
                             <div className={signupStyles.signup_button}
                                 onClick={() => {
@@ -211,15 +189,7 @@ export default function Entrance() {
                             <p className={signupStyles.register_link} onClick={() => { setShowLoginComponent(true) }}>Log In</p>
                         </div>
                         <div className={styles.center_content}>
-                            <p style={{ color: "#ff6c1c", cursor: "pointer" }} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
-                        </div>
-                        <div className={signupStyles.mobile_app_title_container}>
-                            <div className={signupStyles.center_it}>
-                                <p>{"Domus"}</p>
-                            </div>
-                            <div className={signupStyles.center_it}>
-                                <img alt="logo" src="/logo.png"></img>
-                            </div>
+                            <p className={signupStyles.recovery_link} onClick={() => { Router.push("/recovery") }} >Forgot Password?</p>
                         </div>
                     </div>
                 </div>
