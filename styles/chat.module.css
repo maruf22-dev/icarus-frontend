@@ -8,6 +8,7 @@
   z-index: 100;
   font-family: "Montserrat", sans-serif;
 }
+
 .pc img {
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
@@ -143,7 +144,8 @@
   max-height: 100%;
   font-family: "Montserrat", sans-serif;
 }
-.top_bar_left::before{
+
+.top_bar_left::before {
   content: "";
   position: absolute;
   top: 0%;
@@ -279,16 +281,17 @@
   max-height: 100%;
   font-family: "Montserrat", sans-serif;
 }
-.chat_options::before{
-    content: "";
-    position: absolute;
-    top: 10%;
-    left: 0%;
-    z-index: -1;
-    height: 90%;
-    width: 25%;
-    backdrop-filter: blur(10px) brightness(80%);
-    font-family: "Montserrat", sans-serif;
+
+.chat_options::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 0%;
+  z-index: -1;
+  height: 90%;
+  width: 25%;
+  backdrop-filter: blur(10px) brightness(80%);
+  font-family: "Montserrat", sans-serif;
 }
 
 .option_container {
@@ -447,11 +450,9 @@
   margin: 5px;
   font-family: "Montserrat", sans-serif;
   color: #000000;
-  background: linear-gradient(
-    to bottom,
-    rgb(201, 201, 201),
-    rgb(255, 255, 255)
-  );
+  background: linear-gradient(to bottom,
+      rgb(201, 201, 201),
+      rgb(255, 255, 255));
 }
 
 .context_profile_picture_container {
@@ -520,9 +521,9 @@
 }
 
 .message_container {
-  width: 99%;
-  min-width: 99%;
-  max-width: 99%;
+  width: 90%;
+  min-width: 90%;
+  max-width: 90%;
   margin-top: 5px;
   display: flex;
   padding: 10px;
@@ -561,14 +562,13 @@
   order: 2;
   width: max-content;
   max-width: 60%;
-  background: linear-gradient(
-    to bottom,
-    rgb(201, 201, 201),
-    rgb(255, 255, 255)
-  );
+  background: linear-gradient(to bottom,
+      rgb(201, 201, 201),
+      rgb(255, 255, 255));
   box-shadow: 0px 0px 10px #e6e6e6, -0px -0px 10px #e6e6e6;
   color: #000000;
   font-family: "Montserrat", sans-serif;
+  font-weight: 800;
 }
 
 .self .message_space {
@@ -603,7 +603,7 @@
   margin-left: 5px;
   margin-right: 5px;
   font-family: "Montserrat", sans-serif;
-  font-size:x-large;
+  font-size: x-large;
 }
 
 .message {
@@ -625,7 +625,7 @@
   max-width: 100%;
   min-height: 20%;
   max-height: 20%;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 7fr 1fr;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -648,6 +648,8 @@
   height: 100%;
   position: relative;
   font-family: "Montserrat", sans-serif;
+  display: grid;
+  place-items: center;
 }
 
 .message_submit_button {
@@ -665,12 +667,10 @@
 }
 
 /* Large Devices, Wide Screens */
-@media only screen and (max-width: 1200px) {
-}
+@media only screen and (max-width: 1200px) {}
 
 /* Medium Devices, Desktops */
-@media only screen and (max-width: 992px) {
-}
+@media only screen and (max-width: 992px) {}
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -721,6 +721,12 @@
     font-family: "Montserrat", sans-serif;
   }
 
+  .message_container {
+    width: 99%;
+    max-width: 99%;
+    min-width: 99%;
+  }
+
   .message_main {
     width: max-content;
     max-width: 80%;
@@ -736,6 +742,10 @@
   .self .message_space {
     display: none;
     font-family: "Montserrat", sans-serif;
+  }
+  .message_bar_holder
+  {
+    grid-template-columns: 4fr 1fr;
   }
 
   .message_submit_button {
@@ -759,7 +769,8 @@
     place-items: center;
     font-family: "Montserrat", sans-serif;
   }
-  .top_bar_left::before{
+
+  .top_bar_left::before {
     content: "";
     position: absolute;
     top: 0%;
@@ -770,13 +781,11 @@
     backdrop-filter: blur(0px) brightness(100%);
     font-family: "Montserrat", sans-serif;
   }
-  
+
 }
 
 /* Extra Small Devices, Phones */
-@media only screen and (max-width: 480px) {
-}
+@media only screen and (max-width: 480px) {}
 
 /* Custom, iPhone Retina */
-@media only screen and (max-width: 320px) {
-}
+@media only screen and (max-width: 320px) {}
