@@ -1,16 +1,32 @@
-import { Router, useRouter } from 'next/router'
-import React from 'react'
+import { useRouter } from 'next/router'
+import { React, useEffect } from 'react'
+
+import { AppContext, useAppContext } from '../context/AppContext';
 
 
 const Dashboard = () => {
-    let Router = useRouter();
+    const router = useRouter();
+    const { appLevelChange, setAppLevelChange, setLoggedIn, loggedIn } = useAppContext();
+    useEffect(() => {
+        const verified = localStorage.getItem('loggedIn');
+        window.addEventListener('storage', () => {
+            if (JSON.parse(verified) === false) router.push("/entrance");
+        })
+        if (JSON.parse(verified) === false) router.push("/entrance");
+    }, [])
     return (
+        loggedIn &&
         <div>
-            <h1 style={{color: "snow"}}>Dashboard</h1>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/chatter')}}>go to chatter</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/chat/development')}}>go to chat</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/entrance')}}>log out</p>
-            
+            <h1>Dashboard</h1>
+            <p onClick={() => { router.push('/chatter') }}>go to chatter</p>
+            <p onClick={() => { router.push('/chat/development') }}>go to chat</p>
+            <p
+                onClick={() => {
+                    setLoggedIn(false);
+                    setAppLevelChange(!appLevelChange);
+                    router.push("/entrance");
+                }}>log out</p>
+
         </div>
     )
 }

@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "next": "12.0.3",
     "react": "17.0.2",

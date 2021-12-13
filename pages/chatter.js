@@ -6,11 +6,9 @@ const Chatter = () => {
     let Router = useRouter();
     return (
         <div>
-            <h1 style={{color: "snow"}}>Chatter</h1>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/dashboard')}}>go to Dashboard</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/chat/development')}}>go to chat</p>
-            <p style={{color: "snow"}} onClick={()=>{Router.push('/entrance')}}>log out</p>
-            
+            <h1 >Chatter</h1>
+            <p  onClick={()=>{Router.push('/dashboard')}}>go to Dashboard</p>
+            <p  onClick={()=>{Router.push('/chat/development')}}>go to chat</p>
         </div>
     )
 }

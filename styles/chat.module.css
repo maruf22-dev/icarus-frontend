@@ -30,6 +30,7 @@
   top: 0;
   z-index: -100;
   font-family: "Montserrat", sans-serif;
+  background-color: rgb(34, 34, 34);
 }
 
 .backdrop_page_title_holder {
@@ -111,6 +112,7 @@
   background: url("../public/ChatBG.jpg");
   background-size: cover;
   font-family: "Montserrat", sans-serif;
+  background-color: #FBFBFB;
 }
 
 .chat_page::before {

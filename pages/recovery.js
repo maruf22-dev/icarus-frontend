@@ -24,6 +24,7 @@ const Recovery = () => {
 
     const [showEmailChanger, setShowEmailChanger] = useState(true);
     const [showSecurityCodeComponent, setShowSecurityCodeComponent] = useState(false);
+    const [showChangePasswordComponent, setShowChangePasswordComponent] = useState(false);
 
 
     function EmailChanger() {
@@ -49,6 +50,7 @@ const Recovery = () => {
                     <div className={styles.change_password_button} onClick={() => {
                         setShowEmailChanger(false);
                         setShowSecurityCodeComponent(true);
+                        setShowChangePasswordComponent(false);
                         notify("There is no account assoisiated with this email");
                     }}> send confirmation </div>
                 </div>
@@ -75,8 +77,9 @@ const Recovery = () => {
                 </div>
                 <div className={styles.go_back_container}>
                     <p onClick={() => {
-                        setShowSecurityCodeComponent(false);
                         setShowEmailChanger(true);
+                        setShowSecurityCodeComponent(false);
+                        setShowChangePasswordComponent(false);
                     }}>
                         {"Wrong Email?"}
                     </p> </div>
@@ -84,8 +87,53 @@ const Recovery = () => {
                     <div className={styles.change_password_button}
                         onClick={() => {
                             notify("The code did not match the server. Check Again.");
+                            setShowEmailChanger(false);
+                            setShowSecurityCodeComponent(false);
+                            setShowChangePasswordComponent(true);
                         }}>
                         {"Check Code"}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    function ChangePasswordComponent() {
+        return (
+
+            <div className={styles.email_changer}>
+                <div className={styles.mobile_title_container}>
+                    <p> {"Domus"} </p>
+                </div>
+                <div className={styles.title_container}>
+                    <p>
+                        {"Recover Password"}
+                    </p>
+                </div>
+                <div className={styles.email_input_container}>
+                    <div>
+                        <input
+                            placeholder="Enter New Password"
+                        />
+                    </div>
+                </div>
+                <div className={styles.go_back_container}>
+                    <p onClick={() => {
+                        setShowEmailChanger(true);
+                        setShowSecurityCodeComponent(false);
+                        setShowChangePasswordComponent(false);
+                    }}>
+                        {"Go Back"}
+                    </p> </div>
+                <div className={styles.change_password_button_holder}>
+                    <div className={styles.change_password_button}
+                        onClick={() => {
+                            notify("The Password was changed");
+                            setShowEmailChanger(false);
+                            setShowSecurityCodeComponent(false);
+                            setShowChangePasswordComponent(true);
+                        }}>
+                        {"Confirm"}
                     </div>
                 </div>
             </div>
@@ -102,6 +150,9 @@ const Recovery = () => {
                 }
                 {
                     showSecurityCodeComponent && (<SecurityCodeComponent></SecurityCodeComponent>)
+                }
+                {
+                    showChangePasswordComponent && (<ChangePasswordComponent></ChangePasswordComponent>)
                 }
 
                 <>
