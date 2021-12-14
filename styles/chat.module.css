@@ -125,7 +125,6 @@
   height: 100%;
   width: 100%;
   backdrop-filter: blur(2px) brightness(93%);
-
   font-family: "Montserrat", sans-serif;
 }
 
@@ -317,7 +316,7 @@
 .searchbar {
   max-height: 100%;
   width: 95%;
-  color: #b8b8b8;
+  color: black;
   margin-bottom: 1px;
   outline: none;
   padding: 1.5%;
@@ -325,6 +324,7 @@
   font-size: large;
   text-align: center;
   font-family: "Montserrat", sans-serif;
+  font-weight: 900;
 }
 
 .chat_option_container {
@@ -387,7 +387,7 @@
 }
 
 .selected_option {
-  font-family: "Montserrat", sans-serif;
+  background-color: #b8b8b8;
 }
 
 .search_context_holder {
@@ -452,6 +452,7 @@
   margin: 5px;
   font-family: "Montserrat", sans-serif;
   color: #000000;
+  font-weight: 700;
   background: linear-gradient(to bottom,
       rgb(201, 201, 201),
       rgb(255, 255, 255));
@@ -664,7 +665,7 @@
   transform: translateY(-50%);
   background-color: #ffffff;
   border: 1px solid #000000;
-
+  cursor: pointer;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -758,7 +759,6 @@
 
   .option_button_holder {
     z-index: 0;
-    font-family: "Montserrat", sans-serif;
   }
 
   .show_backdrop {

@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 export const AppContext = createContext();
 export function AppWrapper({ children }) {
 
+  const [recieverID, setRecieverID] = useState("");
   const [profileID, setProfileID] = useState("");
   const [profileName, setProfileName] = useState("");
   const [profileEmail, setProfileEmail] = useState("");
@@ -13,6 +14,7 @@ export function AppWrapper({ children }) {
   const [allThreadContext, setAllThreadContext] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [appLevelChange, setAppLevelChange] = useState(false);
+  const [threadName, setThreadName] = useState("");
 
   let BACKEND_URL;
   let SQL_DB_INFO;
@@ -29,18 +31,21 @@ export function AppWrapper({ children }) {
     setProfilePassword(JSON.parse(localStorage.getItem("profilePassword")));
     setProfileEmail(JSON.parse(localStorage.getItem("profileEmail")));
     setLoggedIn(JSON.parse(localStorage.getItem("loggedIn")));
+    setRecieverID(JSON.parse(localStorage.getItem("recieverID")));
+    setThreadName(JSON.parse(localStorage.getItem("threadName")));
   }, []);
 
 
   useEffect(() => {
     if (refreshed) return;
-
     if (loggedIn === false) {
       localStorage.setItem("profileID", JSON.stringify(""));
       localStorage.setItem("profileName", JSON.stringify(""));
       localStorage.setItem("profileEmail", JSON.stringify(""));
       localStorage.setItem("profilePassword", JSON.stringify(""));
       localStorage.setItem("loggedIn", JSON.stringify(false));
+      localStorage.setItem("recieverID", JSON.stringify(""));
+      localStorage.setItem("threadName", JSON.stringify(""));
     }
     else {
       localStorage.setItem("profileID", JSON.stringify(profileID));
@@ -48,31 +53,32 @@ export function AppWrapper({ children }) {
       localStorage.setItem("profileEmail", JSON.stringify(profileEmail));
       localStorage.setItem("profilePassword", JSON.stringify(profilePassword));
       localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
+      localStorage.setItem("recieverID", JSON.stringify(recieverID));
+      localStorage.setItem("threadName", JSON.stringify(threadName));
     }
-
-  }, [appLevelChange]);
+  }, [profileID, profileEmail, profileName, profilePassword, loggedIn, recieverID, threadName]);
 
   let updateThreadContextFromBackend = async () => {
     let demo = [
       {
-        userID: uuid(),
-        threadName: "maruf",
+        userID: "1asd",
+        threadName: "Jack Sparrow",
         threadPictureLink: ""
       },
       {
-        userID: uuid(),
-        threadName: "farhan",
+        userID: "asd2",
+        threadName: "Roberto Carlos",
         threadPictureLink: ""
 
       },
       {
-        userID: null,
-        threadName: "cse group",
+        userID: "3assda",
+        threadName: "Bennedict",
         threadPictureLink: ""
       },
       {
-        userID: null,
-        threadName: "mat group",
+        userID: "4asd",
+        threadName: "Arthur donal coyale",
         threadPictureLink: ""
       }
     ]
@@ -136,6 +142,8 @@ export function AppWrapper({ children }) {
       localStorage.setItem("profileEmail", JSON.stringify(result.data.main.email));
       localStorage.setItem("profilePassword", JSON.stringify(result.data.main.password));
       localStorage.setItem("loggedIn", JSON.stringify(true));
+      localStorage.setItem("threadName", JSON.stringify(""));
+      localStorage.setItem("recieverID", JSON.stringify(""));
     }
     return {
       status: status,
@@ -161,6 +169,12 @@ export function AppWrapper({ children }) {
     //
     profilePassword,
     setProfilePassword,
+    //
+    recieverID,
+    setRecieverID,
+    //
+    threadName,
+    setThreadName,
     //
     allThreadContext,
     setAllThreadContext,
