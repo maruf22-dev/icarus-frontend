@@ -32,7 +32,7 @@
   top: 0;
   z-index: -100;
   font-family: "Montserrat", sans-serif;
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(199, 199, 199);
 }
 
 .backdrop_page_title_holder {
@@ -44,11 +44,10 @@
 
 .backrop_page_title {
   margin: 0;
-  font-size: 1rem;
-  text-decoration: underline;
+  font-size: 1.2rem;
   position: absolute;
   top: 50%;
-  color: #b8b8b8;
+  color: #000000;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   font-weight: bolder;
@@ -83,7 +82,6 @@
   aspect-ratio: 1;
   padding: 0px;
   outline: none;
-
   font-family: "Montserrat", sans-serif;
 }
 
@@ -211,6 +209,7 @@
   aspect-ratio: 1;
   padding: 0px;
   outline: none;
+  background-color: #00000000;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -459,6 +458,45 @@
   background: linear-gradient(to bottom,
       rgb(201, 201, 201),
       rgb(255, 255, 255));
+}
+
+.mobile_chat_setting_image{
+  height: 40%;
+  min-height: 40%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.mobile_chat_setting_image img{
+  width: 50%;
+}
+
+.mobile_chat_setting_container{
+  height: 50%;
+  min-height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile_chat_setting{
+  min-height: 10%;
+  min-width: 90%;
+  max-width: 90%;
+  height: max-content;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  grid-template-columns: 1fr 4fr;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: rgb(201, 201, 201);
+  font-family: "Montserrat", sans-serif;
+  color: #000000;
+  font-weight: 700;
+  border: #00000050 2px solid ;
 }
 
 .context_profile_picture_container {

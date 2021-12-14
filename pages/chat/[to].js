@@ -179,12 +179,44 @@ function Backdrop({ optionPressed, setOptionPressed, threadName }) {
                     </p>
                 </div>
                 <div className={styles.option_close_button_holder}>
-                    <button className={styles.option_close_button}>
+                    <div className={styles.option_close_button}>
                         <img onClick={() => setOptionPressed(!optionPressed)} alt=""
-                            src={"../cross_icon.png"} />
-                    </button>
+                            src={"../back_button.png"} />
+                    </div>
                 </div>
             </div>
+            <div className={styles.mobile_chat_setting_image}>
+                <img alt="" src={"../default_profile_pic.png"} />
+            </div>
+            <div className={styles.mobile_chat_setting_container}>
+
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../profile.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>View Profile</p>
+                    </div>
+                </div>
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../block.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>Block User</p>
+                    </div>
+                </div>
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../report.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>Report User</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }
@@ -257,10 +289,10 @@ function TopBar({
                     }} >
                         <img alt="" src={"../chatter_icon.png"} />
                     </div>
-                    <button className={`${styles.option_button} ${styles.mobile}`}>
+                    <div className={`${styles.option_button} ${styles.mobile}`}>
                         <img onClick={() => setOptionPressed(!optionPressed)} alt=""
                             src={"../chat_option_icon.png"} />
-                    </button>
+                    </div>
                 </div>
             </div>
             <div className={styles.top_bar_right}>
@@ -298,6 +330,37 @@ function OptionBar({
                 settingSelected ?
                     (
                         <>
+                        <div className={styles.mobile_chat_setting_image}>
+                <img alt="" src={"../default_profile_pic.png"} />
+            </div>
+            <div className={styles.mobile_chat_setting_container}>
+
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../profile.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>View Profile</p>
+                    </div>
+                </div>
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../block.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>Block User</p>
+                    </div>
+                </div>
+                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                    <div className={styles.context_profile_picture_container}>
+                        <img alt="" src={"../report.png"} />
+                    </div>
+                    <div className={styles.context_threadname_container}>
+                        <p>Report User</p>
+                    </div>
+                </div>
+            </div>
                         </>
                     ) :
                     (
@@ -414,7 +477,7 @@ function SearchResult({
             }}
         >
             <div className={styles.context_profile_picture_container}>
-                <img alt="" src={"../default_profile_pic.jpg"} />
+                <img alt="" src={"../default_profile_pic.png"} />
             </div>
             <div className={styles.context_threadname_container}>
                 <p>   {context?.threadName} </p>
