@@ -23,11 +23,14 @@ export default function Chat() {
         setAllThreadContext,
         loggedIn,
         setLoggedIn,
-        updateThreadContextFromBackend
+        updateThreadContextFromBackend,
+        recieverID,
+        appLevelChange
     } = useAppContext();
 
     // text state for the message from input field
     const [text, setText] = useState("");
+    const [showChat, setShowChat] = useState(true);
 
     // state for current messages (unpaginated) state | (including previous messages from database)
     const [messages, setMessages] = useState([]);
@@ -39,13 +42,10 @@ export default function Chat() {
     // subset of messages (as per the search keyword)
     const [contextMessages, setContextMessages] = useState([]);
 
-    let Router = useRouter();
     let scrollTextRef = useRef();
     let inputBarRef = useRef();
     let threadName = "{ thread name }"
     let senderID = profileID;
-    let receiverID = "RUID";
-
 
     // takes millis from 1970 to current time : creates a string represebtation
     let getFormattedDateFromMillis = (millis) => {
@@ -70,14 +70,14 @@ export default function Chat() {
             messageID: "message_" + uuid(),
             senderID: senderID,
             senderName: profileName,
-            receiverID: receiverID,
+            recieverID: recieverID,
             senderProfileImageLink: null,
             messageText: text,
             timestamp: Date.now(),
         });
-
         setText('');
     }
+
     // changes text state based on input bar change
     let handleMessageBarChange = (event) => {
         setText(event);
@@ -98,20 +98,28 @@ export default function Chat() {
     }
 
     //
+    useEffect(() => {
+        if (recieverID) {
+            setShowChat(false);
+            router.reload(window.location.pathname);
+        }
+    }, [appLevelChange])
 
     // initial socket connection
     // recieving current connection -> messages from backend
     useEffect(() => {
         if (profileID === "") return;
         socket.on('connect', () => {
-            console.log(`(Re/)connected with socket id ${socket.id} \n in thread ${getThreadId(profileID, receiverID)}`);
-            socket.emit('join_thread', getThreadId(profileID, receiverID));
+            console.log(`(Re/)connected with socket id ${socket.id} \n in thread ${getThreadId(profileID, recieverID)}`);
+            socket.emit('join_thread', getThreadId(profileID, recieverID));
         });
 
         socket.on("recieve_message", (recievedMessage) => {
-            setMessages((messages) => [...messages, recievedMessage]);
+            if ((recievedMessage.senderID === profileID) && (recievedMessage.recieverID === recieverID)) {
+                setMessages((messages) => [...messages, recievedMessage]);
+            }
         });
-    }, [socket, profileID]);
+    }, [socket, profileID, recieverID]);
 
 
 
@@ -139,7 +147,7 @@ export default function Chat() {
     }, [searchContext])
 
     return (
-        loggedIn &&
+        loggedIn && showChat &&
         <>
             <Backdrop
                 optionPressed={optionPressed} setOptionPressed={setOptionPressed} threadName={threadName}>
@@ -149,9 +157,10 @@ export default function Chat() {
                 settingSelected={settingSelected} contextMessages={contextMessages}
                 setSettingsSelected={setSettingsSelected} handleSearch={handleSearch}
                 messages={messages}
-                scrollTextRef={scrollTextRef} senderID={senderID}
+                scrollTextRef={scrollTextRef} senderID={senderID} recieverID={recieverID}
                 text={text} inputBarRef={inputBarRef}
                 handleMessageBarChange={handleMessageBarChange} sendMessage={sendMessage}>
+                {recieverID}
             </ChatPage>
 
         </>
@@ -217,13 +226,13 @@ function ChatPage({
 
 
 function TopBar({
-    threadName,
     optionPressed,
     setOptionPressed
 }) {
 
-    const Router = useRouter();
+    const { threadName } = useAppContext();
 
+    const Router = useRouter();
     return (
         <div className={styles.chat_top_bar}>
             <div className={styles.top_bar_left}>
@@ -391,8 +400,19 @@ function SearchResult({
     context,
     index
 }) {
+    let { setRecieverID, appLevelChange, setAppLevelChange, setThreadName } = useAppContext();
+    const router = useRouter();
     return (
-        <div className={styles.search_result}>
+        <div className={styles.search_result}
+            onClick={(event) => {
+                localStorage.setItem("recieverID", JSON.stringify(context?.userID));
+                localStorage.setItem("threadName", JSON.stringify(context?.threadName));
+                router.push(`/chat/${context?.userID}`);
+                setRecieverID(context?.userID);
+                setThreadName(context?.threadName);
+                setAppLevelChange(!appLevelChange);
+            }}
+        >
             <div className={styles.context_profile_picture_container}>
                 <img alt="" src={"../default_profile_pic.jpg"} />
             </div>
