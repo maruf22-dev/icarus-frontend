@@ -25,11 +25,13 @@ export default function Chat() {
         setLoggedIn,
         updateThreadContextFromBackend,
         recieverID,
-        appLevelChange
+        appLevelChange,
+        threadName
     } = useAppContext();
 
     // text state for the message from input field
     const [text, setText] = useState("");
+    const [report, setReport] = useState(false);
     const [showChat, setShowChat] = useState(true);
 
     // state for current messages (unpaginated) state | (including previous messages from database)
@@ -44,7 +46,6 @@ export default function Chat() {
 
     let scrollTextRef = useRef();
     let inputBarRef = useRef();
-    let threadName = "{ thread name }"
     let senderID = profileID;
 
     // takes millis from 1970 to current time : creates a string represebtation
@@ -150,7 +151,9 @@ export default function Chat() {
         loggedIn && showChat &&
         <>
             <Backdrop
-                optionPressed={optionPressed} setOptionPressed={setOptionPressed} threadName={threadName}>
+                optionPressed={optionPressed} setOptionPressed={setOptionPressed} threadName={threadName}
+                report={report} setReport={setReport}
+            >
             </Backdrop>
             <ChatPage
                 threadName={threadName} setOptionPressed={setOptionPressed} optionPressed={optionPressed}
@@ -159,15 +162,45 @@ export default function Chat() {
                 messages={messages}
                 scrollTextRef={scrollTextRef} senderID={senderID} recieverID={recieverID}
                 text={text} inputBarRef={inputBarRef}
+                report={report} setReport={setReport}
                 handleMessageBarChange={handleMessageBarChange} sendMessage={sendMessage}>
                 {recieverID}
             </ChatPage>
-
+            <ReportModule
+                report={report}
+                setReport={setReport}
+                threadName={threadName}
+            >
+            </ReportModule>
         </>
     );
 }
-
-function Backdrop({ optionPressed, setOptionPressed, threadName }) {
+function ReportModule({
+    report,
+    setReport,
+    threadName
+}) {
+    return (
+        <div className={`${styles.report_module} 
+        ${report ? styles.show_report : styles.no_style}`}>
+            <div className={styles.report_warning}>
+                <p>
+                    Do you really want to report {threadName} ?
+                </p>
+            </div>
+            <div className={styles.report_option_container}>
+                <div className={styles.report_option}>
+                    Yes
+                </div>
+                <div className={styles.report_option}
+                 onClick={() => setReport(false)}>
+                    No
+                </div>
+            </div>
+        </div>
+    )
+}
+function Backdrop({ optionPressed, setOptionPressed, threadName, report, setReport }) {
     return (
         <div className={`${styles.chat_options_backdrop} 
             ${optionPressed ? styles.show_backdrop : styles.no_style}`}>
@@ -207,7 +240,7 @@ function Backdrop({ optionPressed, setOptionPressed, threadName }) {
                         <p>Block User</p>
                     </div>
                 </div>
-                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                <div className={styles.mobile_chat_setting} onClick={(event) => { setReport(true) }}>
                     <div className={styles.context_profile_picture_container}>
                         <img alt="" src={"../report.png"} />
                     </div>
@@ -227,7 +260,9 @@ function ChatPage({
     settingSelected, setSettingsSelected, contextMessages,
     handleSearch, messages, scrollTextRef,
     senderID, text, inputBarRef,
-    handleMessageBarChange, sendMessage
+    handleMessageBarChange, sendMessage,
+    report,
+    setReport
 }) {
     return (
         <div className={styles.chat_page}>
@@ -237,7 +272,9 @@ function ChatPage({
             <div className={styles.chat_main}>
                 <OptionBar
                     settingSelected={settingSelected} contextMessages={contextMessages}
-                    setSettingsSelected={setSettingsSelected} handleSearch={handleSearch}>
+                    setSettingsSelected={setSettingsSelected} handleSearch={handleSearch}
+                    report={report} setReport={setReport}
+                >
                 </OptionBar>
                 <div className={styles.chat_feed}>
                     <ChatList
@@ -307,14 +344,19 @@ function OptionBar({
     settingSelected,
     setSettingsSelected,
     contextMessages,
-    handleSearch
+    handleSearch,
+    report,
+    setReport
 
 }) {
     return (
         <div className={styles.chat_options}>
             <div className={styles.option_container}>
                 <div className={styles.chat_option_container}>
-                    <div onClick={() => setSettingsSelected(false)}
+                    <div onClick={() => {
+                        setSettingsSelected(false)
+                        setReport(false)
+                    }}
                         className={`${styles.search_option}
                      ${!settingSelected ? styles.selected_option : styles.no_style}`}>
                         <img alt="" src={"../cross_icon.png"} />
@@ -330,37 +372,37 @@ function OptionBar({
                 settingSelected ?
                     (
                         <>
-                        <div className={styles.mobile_chat_setting_image}>
-                <img alt="" src={"../default_profile_pic.png"} />
-            </div>
-            <div className={styles.mobile_chat_setting_container}>
+                            <div className={styles.mobile_chat_setting_image}>
+                                <img alt="" src={"../default_profile_pic.png"} />
+                            </div>
+                            <div className={styles.mobile_chat_setting_container}>
 
-                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
 
-                    <div className={styles.context_profile_picture_container}>
-                        <img alt="" src={"../profile.png"} />
-                    </div>
-                    <div className={styles.context_threadname_container}>
-                        <p>View Profile</p>
-                    </div>
-                </div>
-                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
-                    <div className={styles.context_profile_picture_container}>
-                        <img alt="" src={"../block.png"} />
-                    </div>
-                    <div className={styles.context_threadname_container}>
-                        <p>Block User</p>
-                    </div>
-                </div>
-                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
-                    <div className={styles.context_profile_picture_container}>
-                        <img alt="" src={"../report.png"} />
-                    </div>
-                    <div className={styles.context_threadname_container}>
-                        <p>Report User</p>
-                    </div>
-                </div>
-            </div>
+                                    <div className={styles.context_profile_picture_container}>
+                                        <img alt="" src={"../profile.png"} />
+                                    </div>
+                                    <div className={styles.context_threadname_container}>
+                                        <p>View Profile</p>
+                                    </div>
+                                </div>
+                                <div className={styles.mobile_chat_setting} onClick={(event) => { }}>
+                                    <div className={styles.context_profile_picture_container}>
+                                        <img alt="" src={"../block.png"} />
+                                    </div>
+                                    <div className={styles.context_threadname_container}>
+                                        <p>Block User</p>
+                                    </div>
+                                </div>
+                                <div className={styles.mobile_chat_setting} onClick={(event) => { setReport(true) }}>
+                                    <div className={styles.context_profile_picture_container}>
+                                        <img alt="" src={"../report.png"} />
+                                    </div>
+                                    <div className={styles.context_threadname_container}>
+                                        <p>Report User</p>
+                                    </div>
+                                </div>
+                            </div>
                         </>
                     ) :
                     (

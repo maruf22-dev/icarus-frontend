@@ -21,6 +21,57 @@
   z-index: -100;
   font-family: "Montserrat", sans-serif;
 }
+.report_module
+{
+  border-top: 1px solid #00000050;
+  position: absolute;
+  top: 10%;
+  height: 90%;
+  width: 25%;
+  z-index: -100;
+  color: white;
+  background-color: #b8b8b8;
+  padding: 5px;
+}
+.report_warning
+{
+  padding: 10px;
+  display: grid;
+  place-items: center;
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-weight: bolder;
+}
+.report_option_container 
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 20%;
+}
+.report_option 
+{
+  height: fit-content;
+  width: 90%;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+  margin-top: 10px;
+  background-color: blue;
+  display: grid;
+  place-items: center;
+  color: black;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(201, 201, 201);
+  border: 2px solid #00000050;
+
+}
+
+.show_report
+{
+  z-index: 150;
+}
 
 .chat_options_backdrop {
   position: fixed;
@@ -458,6 +509,8 @@
   background: linear-gradient(to bottom,
       rgb(201, 201, 201),
       rgb(255, 255, 255));
+  
+  cursor: pointer;
 }
 
 .mobile_chat_setting_image{
@@ -493,10 +546,11 @@
   margin-top: 15px;
   margin-bottom: 15px;
   background-color: rgb(201, 201, 201);
+  border: #00000050 2px solid ;
   font-family: "Montserrat", sans-serif;
   color: #000000;
   font-weight: 700;
-  border: #00000050 2px solid ;
+  cursor: pointer;
 }
 
 .context_profile_picture_container {
@@ -518,8 +572,10 @@
   margin-left: 5%;
   max-height: 100%;
   max-width: 90%;
-  display: grid;
-  place-items: center;
+  min-width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   font-family: "Montserrat", sans-serif;
 }
 
