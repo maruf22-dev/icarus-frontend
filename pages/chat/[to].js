@@ -193,7 +193,7 @@ function ReportModule({
                     Yes
                 </div>
                 <div className={styles.report_option}
-                 onClick={() => setReport(false)}>
+                    onClick={() => setReport(false)}>
                     No
                 </div>
             </div>
@@ -213,7 +213,10 @@ function Backdrop({ optionPressed, setOptionPressed, threadName, report, setRepo
                 </div>
                 <div className={styles.option_close_button_holder}>
                     <div className={styles.option_close_button}>
-                        <img onClick={() => setOptionPressed(!optionPressed)} alt=""
+                        <img onClick={() => {
+                            setOptionPressed(!optionPressed);
+                            setReport(false)
+                        }} alt=""
                             src={"../back_button.png"} />
                     </div>
                 </div>
