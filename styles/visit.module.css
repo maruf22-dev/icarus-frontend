@@ -1,0 +1,85 @@
+.visit_page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.top_bar
+{
+    height: 25%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+}
+.top_bar_left
+{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+}
+.profile_image_container
+{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.profile_image_container img 
+{
+    height: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+.profile_card 
+{
+    background-color: rebeccapurple;
+    height: 100%;
+}
+.profile_card div:nth-child(1)
+{
+    height: 20%; 
+}
+.profile_card div:nth-child(2)
+{
+    height: 80%; 
+}
+.top_bar_right 
+{
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    justify-content: center;
+}
+.top_bar_right div 
+{
+    width: 50%;
+    height: 50%;
+    background-color: red;
+}
+.main 
+{
+    height: 75%;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+}
+.left 
+{
+    background-color: blue;
+}
+.right 
+{
+    background-color: gray;
+}
+.info 
+{
+    background-color: royalblue;
+    height: 50%;
+}
+.contact 
+{
+    background-color: green;
+    height: 50%;
+}

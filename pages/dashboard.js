@@ -14,6 +14,7 @@ const Dashboard = () => {
         })
         if (JSON.parse(verified) === false) router.push("/entrance");
     }, [])
+
     return (
         loggedIn &&
         <div>
