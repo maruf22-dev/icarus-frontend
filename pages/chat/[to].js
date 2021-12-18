@@ -148,7 +148,7 @@ export default function Chat() {
     }, [searchContext])
 
     return (
-        loggedIn && showChat &&
+        // loggedIn && showChat &&
         <>
             <Backdrop
                 optionPressed={optionPressed} setOptionPressed={setOptionPressed} threadName={threadName}
