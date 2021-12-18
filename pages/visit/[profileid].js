@@ -17,7 +17,9 @@ function Profile() {
         bio: "",
         type: USERTYPE.RENTER,
         numberOfApartments: 0,
-        livesIn: ""
+        livesIn: "",
+        profession: "",
+        rating: ""
     });
     const [contactInfo, setContactInfo] = useState({
         mobile: "",
@@ -31,7 +33,9 @@ function Profile() {
             bio: "I am a chutiya, I am a proud Chutiya and lorem ipsum clum ssowrilal",
             type: USERTYPE.LISTER,
             numberOfApartments: 4,
-            livesIn: "Bashundhara, Dhaka"
+            livesIn: "Bashundhara, Dhaka",
+            profession: "student",
+            rating: "4"
         });
         setContactInfo({
             mobile: "01726442155",
@@ -41,24 +45,24 @@ function Profile() {
     }, [])
 
     return (
-        <Page basicUserInfo={basicUserInfo}></Page>
+        <Page basicUserInfo={basicUserInfo} contactInfo={contactInfo}></Page>
     )
 }
 
-function Page({ basicUserInfo }) {
+function Page({ basicUserInfo, contactInfo }) {
     return (
         <>
-            <PC basicUserInfo={basicUserInfo}></PC>
+            <PC basicUserInfo={basicUserInfo} contactInfo={contactInfo}></PC>
             <Mobile></Mobile>
         </>
     )
 }
 
-function PC({ basicUserInfo }) {
+function PC({ basicUserInfo, contactInfo }) {
     return (
         <div className={styles.visit_page}>
             <Topbar basicUserInfo={basicUserInfo}></Topbar>
-            <Main basicUserInfo={basicUserInfo}></Main>
+            <Main basicUserInfo={basicUserInfo} contactInfo={contactInfo}></Main>
         </div>
     )
 }
@@ -78,9 +82,6 @@ function Topbar({ basicUserInfo }) {
                         {basicUserInfo.name}
                     </div>
                     <div className={styles.top_bio_container}>
-                        <div className={styles.label_container}>
-                            <p>Bio</p>
-                        </div>
                         <p> {basicUserInfo.bio}</p>
                     </div>
                 </div>
@@ -89,7 +90,6 @@ function Topbar({ basicUserInfo }) {
                 <div>
                     <img alt="" src={"../home_icon.png"} onClick={() => {
                         router.push('/dashboard');
-
                     }} />
                 </div>
                 <div>
@@ -108,20 +108,46 @@ function Topbar({ basicUserInfo }) {
 
 }
 
-function Main({ basicUserInfo }) {
+function Main({ basicUserInfo, contactInfo }) {
     return (
         <div className={styles.main}>
             <div className={styles.left}>
-                <div className={styles.info}>
-                    <div className={styles.label_container}>
-                        <p>Info</p>
-                    </div>
-                </div>
                 <div className={styles.contact}>
                     <div className={styles.label_container}>
                         <p> Contanct</p>
                     </div>
+                    <div className={styles.contact_main}>
+                        <p>Email : {contactInfo.email}</p>
+                        <p>Number : {contactInfo.mobile}</p>
+                    </div>
                 </div>
+                <div className={styles.info}>
+                    <div className={styles.label_container}>
+                        <p>Info</p>
+                    </div>
+                    <div className={styles.info_main}>
+                        <p>Occupation: {basicUserInfo.profession}</p>
+                        <p>
+                            {
+                                (basicUserInfo.type === USERTYPE.LISTER) ?
+                                    "Listed " : "Rented "
+                            }
+                            {
+                                basicUserInfo.numberOfApartments
+                            }
+                            {
+                                " Appartments"
+                            }
+                        </p>
+                        <p>Lives in: {basicUserInfo.livesIn}</p>
+                        {
+                            (basicUserInfo.type === USERTYPE.LISTER) ?
+                                (<p>Lister Rating : {basicUserInfo.rating} </p>)
+                                : (<></>)
+                        }
+                    </div>
+                </div>
+
             </div>
             <div className={styles.right}>
                 <ListingsContainer basicUserInfo={basicUserInfo}></ListingsContainer>
@@ -137,13 +163,155 @@ function ListingsContainer({ basicUserInfo }) {
 
     useEffect(() => {
         if (basicUserInfo.name !== "") {
-            setListings([1, 2, 3]);
+            setListings([
+                {
+                    address: "88/a",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "bashundhara dhaka, 88b",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+                {
+                    address: "kjsndad azkjd",
+                    size: "1200sq/ft",
+                    rent: "1200",
+                    bed: "3",
+                    bath: "2",
+                },
+            ]);
         }
     }, [basicUserInfo])
     return (
         <>            {
             (basicUserInfo.type === USERTYPE.LISTER) ?
-                (<div> {listings.map((current, index) => <Listing key={index} current={current}></Listing>)} </div>) :
+                (<>
+                    <div className={styles.listing_name_container}>
+                        <p>
+                            Previous Listings:
+                        </p>
+                    </div>
+                    <div> {listings.map((current, index) => <Listing key={index} current={current}></Listing>)} </div>
+                </>)
+                :
                 (<div>The user is not a lister</div>)
         }
         </>
@@ -151,8 +319,19 @@ function ListingsContainer({ basicUserInfo }) {
 }
 function Listing({ current }) {
     return (
-        <div>
-            {current}
+        <div className={styles.listing}>
+            <p>
+                Address : {current.address}
+            </p>
+            <p>
+                Size : {current.size}
+            </p>
+            <p>
+                Rent : {current.rent}
+            </p>
+            <p>
+                {current.bed} Bed and {current.bath} Bath.
+            </p>
         </div>
     )
 }

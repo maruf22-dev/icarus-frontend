@@ -563,4 +563,3 @@ function Message({
         </div>
     )
 }
-

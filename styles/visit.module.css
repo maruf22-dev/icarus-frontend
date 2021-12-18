@@ -5,8 +5,9 @@
     height: 100%;
     width: 100%;
     display: block;
-    border: 1px black solid;
     font-family: "Montserrat", sans-serif;
+    background-image: url("../public/ChatBG.jpg");
+    background-size: cover;
 }
 
 .top_bar {
@@ -14,7 +15,6 @@
     width: 100%;
     display: grid;
     grid-template-columns: 4fr 6fr;
-    border: 1px black solid;
 }
 
 .top_bar_left {
@@ -22,7 +22,6 @@
     width: 100%;
     display: grid;
     grid-template-columns: 4fr 6fr;
-    border: 1px black solid;
 }
 
 .profile_image_container {
@@ -30,13 +29,13 @@
     width: 100%;
     display: grid;
     place-items: center;
-    border: 1px black solid;
 }
 
 .profile_image_container img {
     height: 80%;
     aspect-ratio: 1;
-    max-width: 100%;
+    max-height: 100%;
+    max-width: 80%;
     border-radius: 50%;
 }
 
@@ -45,23 +44,24 @@
     max-height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px black solid;
 }
 
 .profile_card .top_name_container {
     max-height: 100%;
     max-width: 100%;
     height: fit-content;
-    border: 1px black solid;
     font-weight: bolder;
     text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    font-size: 35px;
 }
 
 .profile_card .top_bio_container {
     flex: 1;
-    border: 1px black solid;
     font-weight: bolder;
     text-align: center;
+    font-size: 18px;
 }
 
 .profile_card p {
@@ -70,24 +70,37 @@
 
 .top_bar_right {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     display: grid;
     place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .top_bar_right div {
-    height: 40%;
-    aspect-ratio: 1;
-    cursor: pointer;
-    border: 1px black solid;
-}
-
-.top_bar_right div img {
-
-    width: 100%;
     height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
+.top_bar_right img {
+
+    margin-top: 30px;
+    cursor: pointer;
+    height: 30%;
+    aspect-ratio: 1;
+}
+.top_bar_right img:nth-child(1)
+{
+    transform: translateX(100%); 
+}
+.top_bar_right img:nth-child(2)
+{
+    transform: translateX(-10%); 
+}
+.top_bar_right img:nth-child(3)
+{
+    transform: translateX(-100%); 
+}
 .main {
     height: 75%;
     display: grid;
@@ -95,38 +108,94 @@
 }
 
 .left {
-    border: 1px black solid;
+    max-height: 75vh;
 }
 
 .right {
-    border: 1px black solid;
+    height: 100%;
+    max-height: 100%;
+    overflow: scroll;
 }
 
 .info {
     height: 50%;
-    border: 1px black solid;
     display: flex;
     flex-direction: column;
 }
 
 .contact {
     height: 50%;
-    border: 1px black solid;
     display: flex;
     flex-direction: column;
+    z-index: 1;
+}
+.contact::before {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    height: 75%;
+    width: 40%;
+    backdrop-filter: blur(10px) brightness(80%);
+    font-family: "Montserrat", sans-serif;
 }
 
+
 .label_container {
-    border: 1px black solid;
     height: fit-content;
+    text-align: left;
+    padding: 25px;
+    padding-bottom: 0px;
 }
 
 .label_container p {
     font-weight: bolder;
     color: black;
-    font-size: xx-large;
+    font-size: 40px;
+}
+.listing_name_container
+{
+    padding: 10px;
+    height: fit-content;
+    text-align: left;
+    margin-left: 7.5%;
+    font-weight: bolder;
+    color: black;
+    font-size: 40px;
+}
+.contact_main 
+{
+    flex: 1;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 25px;
+}
+.info_main 
+{
+    flex: 1;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 25px;
 }
 
+.listing 
+{
+    margin-left: 7.5%;
+    font-weight: 900;
+    background-color: #00000030;
+    height: fit-content;
+    width: 85%;
+    padding: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.listing p 
+{
+    line-height: 1.5rem;
+}
 @media only screen and (max-width: 768px) {
     .visit_page {
         display: none;
