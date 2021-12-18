@@ -152,7 +152,7 @@ export default function Chat() {
         <>
             <Backdrop
                 optionPressed={optionPressed} setOptionPressed={setOptionPressed} threadName={threadName}
-                report={report} setReport={setReport}
+                report={report} setReport={setReport} recieverID={recieverID}
             >
             </Backdrop>
             <ChatPage
@@ -200,7 +200,8 @@ function ReportModule({
         </div>
     )
 }
-function Backdrop({ optionPressed, setOptionPressed, threadName, report, setReport }) {
+function Backdrop({ optionPressed, setOptionPressed, threadName, report, setReport, recieverID }) {
+    let Router = useRouter();
     return (
         <div className={`${styles.chat_options_backdrop} 
             ${optionPressed ? styles.show_backdrop : styles.no_style}`}>
@@ -231,7 +232,9 @@ function Backdrop({ optionPressed, setOptionPressed, threadName, report, setRepo
                     <div className={styles.context_profile_picture_container}>
                         <img alt="" src={"../profile.png"} />
                     </div>
-                    <div className={styles.context_threadname_container}>
+                    <div className={styles.context_threadname_container} onClick={() => {
+                        Router.push(`/visit/${recieverID}`);
+                    }}>
                         <p>View Profile</p>
                     </div>
                 </div>
@@ -264,7 +267,7 @@ function ChatPage({
     handleSearch, messages, scrollTextRef,
     senderID, text, inputBarRef,
     handleMessageBarChange, sendMessage,
-    report,
+    report, recieverID,
     setReport
 }) {
     return (
@@ -277,6 +280,7 @@ function ChatPage({
                     settingSelected={settingSelected} contextMessages={contextMessages}
                     setSettingsSelected={setSettingsSelected} handleSearch={handleSearch}
                     report={report} setReport={setReport}
+                    recieverID={recieverID}
                 >
                 </OptionBar>
                 <div className={styles.chat_feed}>
@@ -349,9 +353,11 @@ function OptionBar({
     contextMessages,
     handleSearch,
     report,
-    setReport
+    setReport,
+    recieverID
 
 }) {
+    let Router = useRouter();
     return (
         <div className={styles.chat_options}>
             <div className={styles.option_container}>
@@ -385,7 +391,11 @@ function OptionBar({
                                     <div className={styles.context_profile_picture_container}>
                                         <img alt="" src={"../profile.png"} />
                                     </div>
-                                    <div className={styles.context_threadname_container}>
+                                    <div className={styles.context_threadname_container}
+                                        onClick={() => {
+                                            Router.push(`/visit/${recieverID}`);
+                                        }}
+                                    >
                                         <p>View Profile</p>
                                     </div>
                                 </div>
