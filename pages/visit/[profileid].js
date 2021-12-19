@@ -165,7 +165,7 @@ function ListingsContainer({ basicUserInfo }) {
                     bath: "2",
                 },
                 {
-                    address: "bashundhara dhaka, 88b",
+                    address: "bashundhara dhaka, 88b jhasd ashdkjh kashdkjashd khasdkh askhd kjashdkh asdkh kashdkh askdhk kasdhjk kjhasdkh askdhk sajdh askdjhkashd aksdhaskdh askhd kjashdkh asdkh kashdkh askdhk kasdhjk kjhasdkh askdhk sajdh askdjhkashd aksdhaskdh askhd kjashdkh asdkh kashdkh askdhk kasdhjk kjhasdkh askdhk sajdh askdjhkashd aksdhaskdh ",
                     size: "1200sq/ft",
                     rent: "1200",
                     bed: "3",
@@ -296,14 +296,14 @@ function ListingsContainer({ basicUserInfo }) {
     return (
         <>            {
             (basicUserInfo.type === USERTYPE.LISTER) ?
-                (<>
+                (<div>
                     <div className={styles.listing_name_container}>
                         <p>
                             Previous Listings:
                         </p>
                     </div>
                     <div> {listings.map((current, index) => <Listing key={index} current={current}></Listing>)} </div>
-                </>)
+                </div>)
                 :
                 (<div>The user is not a lister</div>)
         }

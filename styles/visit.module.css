@@ -199,6 +199,7 @@
     padding-left: 25px;
 }
 
+
 .listing {
     margin-left: 7.5%;
     font-weight: 900;
@@ -228,11 +229,9 @@
         height: unset;
         order: 2;
         min-height: max-content;
-        
     }
     
     .top_bar_right {
-        height: unset;
         order: 1;
         min-height: max-content;
         background-color: #00000030;
@@ -270,13 +269,13 @@
     }
 
     .right {
-        height: max-content;
+        min-height: 100vh;
+        margin-bottom: 30px;
     }
 
     .listing_name_container {
         margin-left: 5%;
     }
-
     .listing {
         margin-left: 5%;
         width: 90%;
