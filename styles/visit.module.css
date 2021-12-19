@@ -12,56 +12,66 @@
 
 .top_bar {
     height: 25%;
+    max-height: 25%;
     width: 100%;
     display: grid;
     grid-template-columns: 4fr 6fr;
+    background-color: black;
 }
 
 .top_bar_left {
     height: 100%;
+    max-height: 100%;
+    min-height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 4fr 6fr;
+    background-color: green;
 }
 
 .profile_image_container {
     height: 100%;
+    max-height: 100%;
+    min-height: 100%;
     width: 100%;
     display: grid;
     place-items: center;
+    background-color: cornflowerblue;
 }
 
 .profile_image_container img {
-    height: 80%;
-    aspect-ratio: 1;
+    height: 70%;
     max-height: 100%;
     max-width: 80%;
     border-radius: 50%;
+    display: none;
 }
 
 .profile_card {
     height: 100%;
     max-height: 100%;
-    display: flex;
-    flex-direction: column;
+    min-height: 100%;
+    background-color: beige;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
 }
 
 .profile_card .top_name_container {
+    height: 100%;
     max-height: 100%;
     max-width: 100%;
-    height: fit-content;
     font-weight: bolder;
     text-align: center;
     padding: 10px;
-    padding-top: 20px;
     font-size: 35px;
 }
 
 .profile_card .top_bio_container {
-    flex: 1;
     font-weight: bolder;
     text-align: center;
     font-size: 18px;
+    max-height: 100%;
 }
 
 .profile_card p {
@@ -69,6 +79,9 @@
 }
 
 .top_bar_right {
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
     display: grid;
     display: grid;
     place-items: center;
@@ -89,18 +102,19 @@
     height: 30%;
     aspect-ratio: 1;
 }
-.top_bar_right img:nth-child(1)
-{
-    transform: translateX(100%); 
+
+.top_bar_right img:nth-child(1) {
+    transform: translateX(100%);
 }
-.top_bar_right img:nth-child(2)
-{
-    transform: translateX(-10%); 
+
+.top_bar_right img:nth-child(2) {
+    transform: translateX(-10%);
 }
-.top_bar_right img:nth-child(3)
-{
-    transform: translateX(-100%); 
+
+.top_bar_right img:nth-child(3) {
+    transform: translateX(-100%);
 }
+
 .main {
     height: 75%;
     display: grid;
@@ -114,7 +128,12 @@
 .right {
     height: 100%;
     max-height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
+}
+
+.right::-webkit-scrollbar {
+    display: none;
+    font-family: "Montserrat", sans-serif;
 }
 
 .info {
@@ -129,6 +148,7 @@
     flex-direction: column;
     z-index: 1;
 }
+
 .contact::before {
     z-index: -1;
     content: "";
@@ -154,8 +174,8 @@
     color: black;
     font-size: 40px;
 }
-.listing_name_container
-{
+
+.listing_name_container {
     padding: 10px;
     height: fit-content;
     text-align: left;
@@ -164,16 +184,8 @@
     color: black;
     font-size: 40px;
 }
-.contact_main 
-{
-    flex: 1;
-    font-weight: bolder;
-    font-size: 25px;
-    padding: 10px;
-    padding-left: 25px;
-}
-.info_main 
-{
+
+.contact_main {
     flex: 1;
     font-weight: bolder;
     font-size: 25px;
@@ -181,8 +193,15 @@
     padding-left: 25px;
 }
 
-.listing 
-{
+.info_main {
+    flex: 1;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 25px;
+}
+
+.listing {
     margin-left: 7.5%;
     font-weight: 900;
     background-color: #00000030;
@@ -192,12 +211,79 @@
     margin-bottom: 20px;
     font-size: 20px;
 }
-.listing p 
-{
+
+.listing p {
     line-height: 1.5rem;
 }
+
 @media only screen and (max-width: 768px) {
     .visit_page {
+        overflow-y: scroll;
+    }
+
+    .top_bar {
+        grid-template-columns: 1fr;
+        height: fit-content;
+    }
+
+    .top_bar_left {
+
+        order: 2;
+    }
+
+    .top_bar_right {
+        height: fit-content;
+        order: 1;
+    }
+
+    .profile_card {
+        height: fit-content;
+        max-height: fit-content;
+    }
+
+    .top_bio_container {
+        height: fit-content;
+        padding-bottom: 10px;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .contact {
+        margin-bottom: 0px;
+    }
+
+    .contact::before {
         display: none;
+    }
+
+    .info {
+        height: fit-content;
+        min-height: fit-content;
+    }
+
+    .left {
+        height: fit-content;
+    }
+
+    .right {
+        height: fit-content;
+        min-height: fit-content;
+        max-height: fit-content;
+        overflow: unset;
+    }
+
+    .listing_name_container {
+        margin-left: 5%;
+    }
+
+    .listing {
+        margin-left: 5%;
+        width: 90%;
+    }
+
+    .listing:last-child {
+        margin-bottom: 25px;
     }
 }

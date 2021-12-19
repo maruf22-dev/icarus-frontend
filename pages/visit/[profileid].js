@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/visit.module.css'
-import mobile_styles from '../../styles/visit_mobile.module.css'
 import router, { useRouter } from 'next/router'
 
 const USERTYPE =
@@ -52,20 +51,14 @@ function Profile() {
 function Page({ basicUserInfo, contactInfo }) {
     return (
         <>
-            <PC basicUserInfo={basicUserInfo} contactInfo={contactInfo}></PC>
-            <Mobile></Mobile>
+            <div className={styles.visit_page}>
+                <Topbar basicUserInfo={basicUserInfo}></Topbar>
+                <Main basicUserInfo={basicUserInfo} contactInfo={contactInfo}></Main>
+            </div>
         </>
     )
 }
 
-function PC({ basicUserInfo, contactInfo }) {
-    return (
-        <div className={styles.visit_page}>
-            <Topbar basicUserInfo={basicUserInfo}></Topbar>
-            <Main basicUserInfo={basicUserInfo} contactInfo={contactInfo}></Main>
-        </div>
-    )
-}
 
 
 function Topbar({ basicUserInfo }) {
@@ -336,14 +329,6 @@ function Listing({ current }) {
     )
 }
 
-
-function Mobile() {
-    return (
-        <div className={mobile_styles.visit_page}>
-            Mobile
-        </div>
-    )
-}
 
 export default Profile
 
