@@ -1,0 +1,138 @@
+.page {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url("../public/ChatBG.jpg");
+    background-size: cover;
+}
+
+.page_top_container {
+    height: 10%;
+    min-height: 10%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.home_button_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.home_button_container img {
+    height: 6vh;
+    min-height: 6vh;
+    max-height: 6vh;
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.title_container {
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-size: xx-large;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.title_container p {
+    position: relative;
+    left: 21.5%;
+}
+
+.main {
+    width: 100%;
+    height: 90%;
+}
+
+.search_bar_container {
+    height: 10%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.search_bar {
+    height: 70%;
+    width: 80%;
+    color: black;
+    margin-bottom: 1px;
+    outline: none;
+    font-weight: 500;
+    font-size: large;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+}
+
+.search_result_container {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    overflow: auto;
+}
+
+.search_result_container::-webkit-scrollbar {
+    display: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.search_result {
+    max-width: 100%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    font-weight: 700;
+    background: linear-gradient(to bottom,
+            rgb(201, 201, 201),
+            rgb(255, 255, 255));
+
+    cursor: pointer;
+}
+
+.search_profile_picture_container {
+    max-height: 50%;
+    max-width: 100%;
+    display: grid;
+    place-items: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+.search_profile_picture_container img {
+    max-height: 90%;
+    max-width: 90%;
+    padding-left: 5%;
+    font-family: "Montserrat", sans-serif;
+}
+
+.threadname_container {
+    margin-left: 5%;
+    max-height: 100%;
+    max-width: 90%;
+    min-width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    font-family: "Montserrat", sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .search_result_container
+    {
+        width: 95%;
+        left: 2.5%;
+    }
+}

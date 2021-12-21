@@ -20,7 +20,6 @@ const Dashboard = () => {
         <div>
             <h1>Dashboard</h1>
             <p onClick={() => { router.push('/chatter') }}>go to chatter</p>
-            <p onClick={() => { router.push('/chat/development') }}>go to chat</p>
             <p
                 onClick={() => {
                     setLoggedIn(false);
