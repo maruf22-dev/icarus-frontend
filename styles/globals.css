@@ -31,8 +31,6 @@ body {
   overflow-x: hidden;
   background-color: #FBFBFB;
   font-family: Arial, Helvetica, sans-serif;
-  background: url("../public/ChatBG.jpg");
-  background-size: cover;
 }
 .Toastify
 {

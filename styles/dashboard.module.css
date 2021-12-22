@@ -1,0 +1,260 @@
+.main {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.navbar {
+    height: 15%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1.5fr;
+    background-color: transparent;
+    background-color: #dddddd;
+}
+
+.navlinks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    height: 15%;
+    width: 21.4%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.navlinks img {
+    height: 30%;
+    aspect-ratio: 1;
+    max-width: 100%;
+}
+
+.logout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    height: 15%;
+    width: 21.4%;
+    position: fixed;
+    top: 0;
+    left: 78.57%;
+    z-index: 100;
+}
+
+.logout img {
+    position: relative;
+    left: 50%;
+    height: 30%;
+    aspect-ratio: 1;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.app_title {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    font-size: 2rem;
+    color: #000000;
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+}
+
+.landing {
+    position: relative;
+    left: 0;
+    height: 85%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background-color: #dddddd;
+    /* background: url('../public/landing_bg.png');
+    background-size: cover; */
+}
+
+.landing::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 15%;
+    bottom: 0%;
+    left: 0px;
+    z-index: 0;
+    height: 150%;
+    width: 150%;
+    background-color: white;
+    transform: rotate(15deg) translateX(-10%) translateY(40%);
+}
+
+.landing::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rebeccapurple;
+    z-index: 100;
+}
+
+
+.landing_top_container {
+    height: 30%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1.5fr;
+    place-items: center;
+    z-index: 2;
+}
+
+.home_container {
+    font-family: "Montserrat", sans-serif;
+    height: 70%;
+    font-weight: bolder;
+    font-size: 3rem;
+    width: 50%;
+    display: grid;
+    place-items: center;
+    border-bottom: 3px solid black;
+    z-index: 2;
+}
+
+.landing_bottom_container {
+    height: 30%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1.5fr;
+    place-items: center;
+    z-index: 2;
+}
+
+.landing_bottom_img_container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    z-index: 2;
+}
+
+.landing_item {
+    height: 100%;
+    width: 100%;
+}
+
+.landing_item_image {
+    height: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.landing_item_image img {
+    height: 70%;
+    aspect-ratio: 1;
+}
+
+.landing_item_text {
+    width: 100%;
+    height: 50%;
+    display: grid;
+    text-align: center;
+}
+
+.landing_item_text p {
+    position: relative;
+    top: 20%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.info_part {
+    position: relative;
+    left: 0;
+    height: 120%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* background: url('../public/landing_bg.png');
+    background-size: cover; */
+}
+
+.info_part::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 15%;
+    bottom: 0%;
+    left: 0px;
+    z-index: 0;
+    height: 150%;
+    width: 150%;
+    background-color: #dddddd;
+    transform: rotate(15deg) translateX(-10%) translateY(40%);
+}
+
+.info_grid {
+    position: relative;
+    left: 25%;
+    width: 57%;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+}
+
+.info_para_main {
+    margin-left: auto;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.info_para {
+    margin-left: auto;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.contact_container {
+    position: relative;
+    left: 25%;
+    width: 57%;
+    height: 100%;
+    z-index: 2;
+}
+
+.contact_main {
+    height: 25%;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr;
+}
+.contact
+{
+    display: grid;
+    place-items: center;
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    border-bottom: 3px black solid;
+}
+.gmail_container 
+{
+    height: 30%;
+    display: grid;
+    place-items: center;
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+}

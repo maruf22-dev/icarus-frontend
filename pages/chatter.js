@@ -11,16 +11,45 @@ const Chatter = () => {
     let Router = useRouter();
     let { setRecieverID, appLevelChange, setAppLevelChange, setThreadName } = useAppContext();
     const [searchText, setSearchText] = useState("");
-    const [searchResult, setSearchResult] = useState([])
+    const [searchResult, setSearchResult] = useState([]);
+    const [messageHistory, setMessageHistory] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
+
+        //
+
+        setMessageHistory(
+            [
+                {
+                    userID: "1asd",
+                    threadName: "Jack Sparrow",
+                    threadPictureLink: "",
+                    lastMessageTime: "8:12 PM 12/3/21",
+                    seen: false,
+                },
+                {
+                    userID: "1asd",
+                    threadName: "Jack Sparrow",
+                    threadPictureLink: "",
+                    lastMessageTime: "8:12 PM 12/3/21",
+                    seen: false,
+                },
+                {
+                    userID: "1asd",
+                    threadName: "Jack Sparrow",
+                    threadPictureLink: "",
+                    lastMessageTime: "8:12 PM 12/3/21",
+                    seen: true,
+                },
+            ]
+        )
         setAllUsers(
             [
                 {
                     userID: "1asd",
                     threadName: "Jack Sparrow",
-                    threadPictureLink: ""
+                    threadPictureLink: "",
                 },
                 {
                     userID: "1asd",
@@ -80,9 +109,14 @@ const Chatter = () => {
                     }} alt="" src={"../home_icon.png"} />
                 </div>
                 <div className={styles.title_container}>
-                    <p>
-                        chat
-                    </p>
+                    {(searchText === "") ?
+                        <p>
+                            Chat History
+                        </p> :
+                        <p>
+                            Search Results
+                        </p>
+                    }
                 </div>
             </div>
             <div className={styles.main}>
@@ -96,8 +130,26 @@ const Chatter = () => {
                 </div>
                 {
                     (searchText === "") ?
-                        <div>
-                            history
+                        <div className={styles.history_container}>
+                            {
+                                messageHistory.map((current, index) =>
+                                    <div className={styles.history}>
+                                        <div className={styles.profile_pic}>
+                                            <img alt="" src={"../default_profile_pic.png"} />
+                                        </div>
+                                        <div className={styles.threadname_container}>
+                                            <p>   {current.threadName} </p>
+                                        </div>
+                                        <div className={styles.time_container}>
+                                            {current.seen ? <img alt="" src={"../unseen_icon.png"} /> : <></>}
+                                            <p>
+                                                {current.lastMessageTime}
+                                            </p>
+                                        </div>
+                                    </div>)
+                            }
+
+
                         </div>
                         :
                         <div className={styles.search_result_container}>
@@ -113,7 +165,7 @@ const Chatter = () => {
                                             setThreadName(current.threadName);
                                             setAppLevelChange(!appLevelChange);
                                         }}>
-                                        <div className={styles.search_profile_picture_container}>
+                                        <div className={styles.profile_pic}>
                                             <img alt="" src={"../default_profile_pic.png"} />
                                         </div>
                                         <div className={styles.threadname_container}>
