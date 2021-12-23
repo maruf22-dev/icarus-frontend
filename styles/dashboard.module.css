@@ -12,6 +12,68 @@
     grid-template-columns: 1.5fr 4fr 1.5fr;
     background-color: transparent;
     background-color: #dddddd;
+    min-height: 3rem;
+}
+
+.mobile_button {
+  
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 100;
+}
+
+.mobile_button img {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%) translateX(50%);
+    transform: translateY(-50%) translateX(50%);
+    
+    height: 30%;
+    aspect-ratio: 1;
+    max-width: 100%;
+    cursor: pointer;
+}
+.mobile_links
+{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dddddd;
+}
+.mobile_link_item 
+{
+    height: 15%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+}
+.mobile_link_text
+{
+    position: relative;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    display: grid;
+    place-items: center;
+    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;;
+    border-bottom: 3px solid black;
+}
+.mobile_link_button 
+{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.mobile_link_button img
+{
+    height: 30%;
+    aspect-ratio: 1;
 }
 
 .navlinks {
@@ -30,6 +92,7 @@
     height: 30%;
     aspect-ratio: 1;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .logout {
@@ -119,6 +182,7 @@
     place-items: center;
     border-bottom: 3px solid black;
     z-index: 2;
+    min-height: 4rem;
 }
 
 .landing_bottom_container {
@@ -128,6 +192,7 @@
     grid-template-columns: 1.5fr 4fr 1.5fr;
     place-items: center;
     z-index: 2;
+    min-height: 30%;
 }
 
 .landing_bottom_img_container {
@@ -173,15 +238,13 @@
 .info_part {
     position: relative;
     left: 0;
-    height: 120%;
+    height: 130%;
     width: 100%;
     overflow: hidden;
     z-index: 0;
     background-color: white;
     display: flex;
     flex-direction: column;
-    /* background: url('../public/landing_bg.png');
-    background-size: cover; */
 }
 
 .info_part::before {
@@ -232,6 +295,7 @@
     width: 57%;
     height: 100%;
     z-index: 2;
+    top: 0%;
 }
 
 .contact_main {
@@ -239,22 +303,91 @@
     background-color: transparent;
     display: grid;
     grid-template-columns: 1fr 2.5fr 1fr;
+    min-height: 4rem;
 }
-.contact
-{
+
+.contact {
     display: grid;
     place-items: center;
     font-weight: bolder;
     font-family: "Montserrat", sans-serif;
     font-size: 3rem;
+    min-height: fit-content;
     border-bottom: 3px black solid;
 }
-.gmail_container 
-{
+
+.gmail_container {
     height: 30%;
     display: grid;
     place-items: center;
     font-weight: bolder;
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
+    min-height: 4rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .navlinks {
+        display: none;
+    }
+
+    .logout {
+        display: none;
+    }
+
+    .landing_top_container {
+        grid-template-columns: 1fr 8fr 1fr;
+    }
+
+    .home_container {
+        font-size: 2rem;
+    }
+
+    .info_grid {
+        left: 0%;
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .info_part {
+        height: fit-content;
+    }
+
+    .contact_container {
+        left: 0%;
+        width: 100%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .gmail_container {
+        position: relative;
+        left: 0%;
+        font-size: 1.5rem;
+    }
+
+    .contact {
+        font-size: 2rem;
+    }
+
+    .landing_item_image img {
+        height: 40%;
+        aspect-ratio: 1;
+    }
+
+    .landing_item_text p {
+        font-size: 1rem;
+    }
+
+    .landing_bottom_container {
+        grid-template-columns: 0fr 1fr 0fr;
+    }
+
+    .landing {
+        height: 70%;
+    }
+
+    .mobile_button {
+        display: block;
+    }
 }

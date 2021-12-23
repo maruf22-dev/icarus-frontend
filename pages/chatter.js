@@ -133,7 +133,7 @@ const Chatter = () => {
                         <div className={styles.history_container}>
                             {
                                 messageHistory.map((current, index) =>
-                                    <div className={styles.history}>
+                                    <div key={index} className={styles.history}>
                                         <div className={styles.profile_pic}>
                                             <img alt="" src={"../default_profile_pic.png"} />
                                         </div>
