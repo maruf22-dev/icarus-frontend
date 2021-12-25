@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
-import { React, useEffect, useState } from 'react'
-import styles from '../styles/dashboard.module.css'
+import { useRouter } from 'next/router';    
+import { React, useEffect, useState } from 'react';
+import styles from '../styles/dashboard.module.css';
 import { AppContext, useAppContext } from '../context/AppContext';
 
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
                                 <p>Profile</p>
                             </div>
                             <div className={styles.mobile_link_button}>
-                                <img alt="" src={"../nav_profile.png"} />
+                                <img alt="" src={"../nav_profile.png"}  onClick={() => { router.push("/profile") }}/>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@ const Dashboard = () => {
                             <div className={styles.navlinks}>
                                 <img alt="" src={"../nav_maps.png"} />
                                 <img alt="" src={"../chatter_icon.png"} onClick={() => { router.push("/chatter") }} />
-                                <img alt="" src={"../nav_profile.png"} />
+                                <img alt="" src={"../nav_profile.png"} onClick={() => { router.push("/profile") }}/>
                             </div>
                             <div>
                             </div>

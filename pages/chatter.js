@@ -133,7 +133,16 @@ const Chatter = () => {
                         <div className={styles.history_container}>
                             {
                                 messageHistory.map((current, index) =>
-                                    <div key={index} className={styles.history}>
+                                    <div key={index} className={styles.history}
+                                        onClick={(event) => {
+                                            localStorage.setItem("recieverID", JSON.stringify(current.userID));
+                                            localStorage.setItem("threadName", JSON.stringify(current.threadName));
+                                            Router.push(`/chat/${current.userID}`);
+                                            setRecieverID(current.userID);
+                                            setThreadName(current.threadName);
+                                            setAppLevelChange(!appLevelChange);
+                                        }}
+                                    >
                                         <div className={styles.profile_pic}>
                                             <img alt="" src={"../default_profile_pic.png"} />
                                         </div>
