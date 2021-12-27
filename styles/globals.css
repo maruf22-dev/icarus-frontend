@@ -32,8 +32,55 @@ body {
   background-color: #FBFBFB;
   font-family: Arial, Helvetica, sans-serif;
 }
-.Toastify
-{
+
+
+
+
+
+.horizontal-slider {
+  display: relative;
+  left: 10%;
+  width: 80%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  background: black;
+  border-radius: 100%;
+  display: block;
+}
+
+.example-thumb.active {
+  background-color: black;
+}
+
+.example-track {
+  position: relative;
+  background: #00000030;
+}
+
+.example-track.example-track-0 {
+  background: #83a9ff;
+}
+
+.horizontal-slider .example-track {
+  height: 4px;
+}
+
+.horizontal-slider .example-thumb {
+
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+}
+
+.Toastify {
   position: absolute;
 }
 
@@ -106,7 +153,7 @@ body {
   border-bottom: 1px solid #b8b8b8;
 }
 
-.emoji-mart-anchor-icon{
+.emoji-mart-anchor-icon {
   color: rgb(0, 0, 0);
 }
 
@@ -121,7 +168,7 @@ body {
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
 
-  
+
 
   .react-emoji-picker--container {
     float: right;

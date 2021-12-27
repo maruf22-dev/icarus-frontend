@@ -58,7 +58,7 @@ const Profile = () => {
                                 <p>Maps</p>
                             </div>
                             <div className={styles.mobile_link_button}>
-                                <img alt="" src={"../nav_maps.png"} />
+                                <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@ const Profile = () => {
             <div className={styles.profile_page}>
                 <div className={styles.navbar}>
                     <div className={styles.navlinks}>
-                        <img alt="" src={"../nav_maps.png"} />
+                        <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
                         <img alt="" src={"../chatter_icon.png"} onClick={() => { router.push("/chatter") }} />
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
@@ -388,7 +388,8 @@ const Profile = () => {
                                                 }
                                             }}
                                         >
-                                            {info?.usertype}
+
+                                            {info?.usertype === USERTYPE.LISTER ? "Lister" : "Renter"}
                                         </div>
                                     </div>
                                 </div>

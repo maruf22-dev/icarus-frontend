@@ -279,6 +279,7 @@
     width: 100%;
     padding: 10px;
     font-family: "Montserrat", sans-serif;
+    text-align: justify;
 }
 
 .info_para {
@@ -287,6 +288,7 @@
     width: 100%;
     padding: 10px;
     font-family: "Montserrat", sans-serif;
+    text-align: justify;
 }
 
 .contact_container {

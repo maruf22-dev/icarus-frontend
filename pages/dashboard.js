@@ -143,12 +143,12 @@ const Dashboard = () => {
                             <div className={styles.info_grid}>
                                 <div className={styles.info_para_main}>
                                     <p>
-                                        {"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                                        {"Finding a place to live in Bashundhara R/A as a student could be quite intimidating at times. Nobody likes walking block after block, finding a suitable apartment only to know that the price is way above the budget. Yet, those apartments might not have sufficient space, the number of rooms, or could be miles away from the university. Moreover, if you’re in search of just a single/shared room, luck might hit you the other way round. The valuable time, energy, and other resources spent for renting an apartment are totally not worth it."}
                                     </p>
                                 </div>
                                 <div className={styles.info_para}>
                                     <p>
-                                        {"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                                        {"We’ve also faced this and we got u covered. Domus offers you a whole new way of searching for rental places. From basic listings with images (which you generally find on Facebook) to surfing in a Map and talking with the renter directly within the app, the process is easier than ever. You can even apply different filters (Rooms, Size, Price, Block, etc.) while you look for your place. Furthermore, you can get information about the renter - his/her listing ratings, previous listings, and contact info. It's easy - Sign Up. Verify. Search."}
 
                                     </p>
                                 </div>
