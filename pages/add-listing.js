@@ -1,19 +1,34 @@
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker, Popup } from 'react-map-gl'
 import styles from '../styles/map.module.css'
 import ReactSlider from 'react-slider'
 import { useRouter } from 'next/router';
-
-const BACKEND_URL = 'http://localhost:3001';
-// BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-const SQL_DB_INFO = 'LOCAL';
-// SQL_DB_INFO = 'WEB';
+import { v4 as uuid } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const API_KEY = "pk.eyJ1IjoiZGV2LWljYXJ1cyIsImEiOiJja3htOTd4YnAwYjBpMm9wN2V1dXN0enBxIn0.imngKPcStcncOKT9-kD3WA";
 const Map = () => {
 
+    const notify = (message) => toast.dark(
+        message,
+        {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: 0,
+        }
+    );
+
+    const BACKEND_URL = 'http://localhost:3001';
+        // BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+        const SQL_DB_INFO = 'LOCAL';
+        // SQL_DB_INFO = 'WEB';
 
     const blocks = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
     const sizeLimit =
@@ -24,7 +39,7 @@ const Map = () => {
     const rentLimit =
     {
         start: 1000,
-        end: 10000,
+        end: 100000,
     }
     const bedroomLimit =
     {
@@ -77,59 +92,50 @@ const Map = () => {
     const [roomtype, setRoomtype] = useState(ROOM_TYPE.SINGLE);
     const [searchKeyWord, setSearchKeyWord] = useState("");
     const [selectedListing, setSelectedListing] = useState(null);
-
+    const [latitude, setLatitude] = useState(23.81);
+    const [longitude, setLongitude] = useState(90.43);
 
     // changes state based on search input bar change
     let handleSearch = (event) => {
         let keyword = event?.target?.value;
         setSearchKeyWord(keyword);
     }
-
-    const [list, setList] = useState([]);
-    let mainListings = [];
-
-    useEffect(async () => {
-        let listing = await axios.post(
-            `${BACKEND_URL}/api/v1/database/getalllisting?HOST=${SQL_DB_INFO}`, {
-
-        }
-        );
-        if(list.length===0)
-            setList(listing.data.data.data);
-        for (let i = 0; i < list.length; i++) {
-            console.log(list);
-            let x = {
-                id: list.listID,
-                latitude: list.latitude,
-                longitude: list.longitude,
-                listings: [
-                    {
-                        id: list.listID,
-                        latitude: list.latitude,
-                        longitude: list.longitude,
-                        address: `Block : ${list.block}, Bashundhara R/A, Dhaka`,
-                        size: list.size,
-                        rent: list.rent,
-                        numOfBeds: list.beds,
-                        numOfBaths: list.baths,
-                        images: [],
-                        
-                    }
-                ]
+    async function addListing() {
+        let id=uuid();
+        let area = await axios.post(
+            `${BACKEND_URL}/api/v1/database/insertarea?HOST=${SQL_DB_INFO}`, {
+                areaID:id,
+                latitude:latitude,
+                longitude:longitude,
             }
-            mainListings=[...mainListings, x];
-        }
+        );
+        let listing = await axios.post(
+            `${BACKEND_URL}/api/v1/database/insertlistings?HOST=${SQL_DB_INFO}`, {
+                listID:id,
+                listedBy:'',
+                size:currentSize,
+                rent:currentRent,
+                beds:currentBedroom,
+                baths:currentBathroom,
+                aptNo:'',
+                house:'',
+                road:'',
+                block:selectedBlock,
+                location:'Bashundhara R/A',
+                latitude:latitude,
+                longitude:longitude,
+                vacancy:1,
+                listingArea:id,
+            }
+        );
         
-    }, [list]);
-
-    
-
+    }
     return (
         <>
             <MapBox
+                latitude={latitude} longitude={longitude} setLatitude={setLatitude} setLongitude={setLongitude}
                 viewPort={viewPort} setViewPort={setViewPort}
                 selectedListing={selectedListing} setSelectedListing={setSelectedListing}
-                mainListings={list}
             />
             <div className={styles.settings}>
                 <div className={styles.page_title}>
@@ -137,13 +143,13 @@ const Map = () => {
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
                     <div className={styles.page_title_container}>
-                        Map
+                        Add
                     </div>
                     <div className={styles.home_icon}>
                         <img alt="" src={"../lisitings_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
                 </div>
-                <div className={styles.search}>
+                {/* <div className={styles.search}>
                     <div className={styles.search_bar}>
                         <input
                             type="text"
@@ -154,15 +160,8 @@ const Map = () => {
                     <div className={styles.search_button}>
                         <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
-                </div>
-                <div className={styles.filter}>
-                    <div className={styles.filter_text}>
-                        Filter
-                    </div>
-                    <div className={styles.filter_button}>
-                        <img alt="" src={"../filter_icon.png"} onClick={() => { router.push("/dashboard") }} />
-                    </div>
-                </div>
+                </div> */}
+
                 <div className={styles.blocks_bar}>
                     <div className={styles.block_text}>Block</div>
                     <div className={styles.block_dropdown} onClick={() => setBlocksDropDownPressed(!blocksDropDownPressed)}>{selectedBlock}</div>
@@ -203,7 +202,7 @@ const Map = () => {
                     !blocksDropDownPressed &&
                     <div className={styles.price_slider}>
                         <div className={styles.rent_price}>
-                            Maximum Rent: {currentRent}
+                            Rent: {currentRent}
                         </div>
                         <ReactSlider
                             min={rentLimit.start}
@@ -297,6 +296,12 @@ const Map = () => {
                         </div>
                     </div>
                 }
+                <div className={styles.addListingButton}>
+                    <img alt="" src={"../add.png"} onClick={async ()=> {
+                        notify('Listing Added Successfully!');
+                        await addListing();
+                    }} />
+                </div>
                 <div className={styles.phone_navigator}>
                     <div className={styles.phone_nav_icon}>
                         <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/dashboard") }} />
@@ -310,11 +315,14 @@ const Map = () => {
                 </div>
 
             </div>
+            <ToastContainer>
+
+            </ToastContainer>
         </>
     )
 }
 
-const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, mainListings }) => {
+const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, latitude, longitude, setLatitude, setLongitude }) => {
     React.useEffect(() => {
         function handleResize() {
             setViewPort({
@@ -337,6 +345,7 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
         keyboard: false,
     });
 
+    
 
 
     const mapStyle = "mapbox://styles/dev-icarus/ckxnarrj65qbd15ugbg9xwhgn";
@@ -411,8 +420,6 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
 
 
 
-
-
     function inBounds(latitude, longitude) {
         const bounds =
         {
@@ -432,7 +439,7 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
         let longitudeInBound = (bounds.ul.longitude < longitude) && (bounds.dr.longitude > longitude);
         return latitudeInBound && longitudeInBound;
     }
-    console.log(mainListings);
+
     return (
         <div className={styles.map}>
             <ReactMapGL {...viewPort}
@@ -442,22 +449,22 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
                 onViewportChange={(viewPort) => {
                     if (inBounds(viewPort.latitude, viewPort.longitude)) setViewPort(viewPort);
                 }}>
-                {
 
-                    mainListings.map((current, index) =>
-                        <div key={index}>
-                            <Marker latitude={parseFloat(current.latitude)} longitude={parseFloat(current.longitude)}>
-                                <div className={styles.list_image}>
-                                    <img alt="" src={"../map_point.png"} onClick={() => { setSelectedListing(current) }
-                                    } />
-                                </div>
-                            </Marker>
+                <div>
+                    <Marker latitude={latitude} longitude={longitude} draggable={true} onDrag={(event) => {
+                        console.log(event);
+                        setLatitude(event.lngLat[1]);
+                        setLongitude(event.lngLat[0]);
+                    }}>
+                        <div className={styles.list_image}>
+                            <img alt="" src={"../map_point.png"}
+                            />
                         </div>
-                    )
-                }
+                    </Marker>
+                </div>
                 {
                     selectedListing && (
-                        <Popup latitude={parseFloat(selectedListing.latitude)} longitude={parseFloat(selectedListing.longitude)}
+                        <Popup latitude={selectedListing.latitude} longitude={selectedListing.longitude}
                             closeButton={false}
                             closeOnClick={true}
                             onClose={() => {
@@ -466,22 +473,23 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
 
                         >
                             <div className={styles.popup}>
-                                
-                                        <div key={selectedListing.id} className={styles.popup_list}>
+                                {
+                                    selectedListing.listings.map((list, index) =>
+                                        <div key={list.id} className={styles.popup_list}>
                                             <div className={styles.popup_list_single}>
-                                                {/* Listing {index + 1} */}
+                                                Listing {index + 1}
                                             </div>
                                             <div className={styles.popup_list_single}>
-                                                Address: {selectedListing.address}
+                                                Address: {list.address}
                                             </div>
                                             <div className={styles.popup_list_single}>
-                                                Rent: {selectedListing.rent}
+                                                Rent: {list.rent}
                                             </div>
                                             <div className={styles.popup_list_single}>
-                                                Rooms: {selectedListing.numOfBeds} bed and {selectedListing.numOfBaths}
+                                                Rooms: {list.numOfBeds} bed and {list.numOfBaths}
                                             </div>
                                             <div className={styles.popup_list_single}>
-                                                Gender: {selectedListing.gender}
+                                                Gender: {list.gender}
 
                                             </div>
                                             <div className={styles.popup_list_single}>
@@ -490,7 +498,8 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
                                                 </div>
                                             </div>
                                         </div>
-                                
+                                    )
+                                }
                             </div>
                         </Popup>
                     )

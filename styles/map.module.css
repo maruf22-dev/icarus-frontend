@@ -12,6 +12,18 @@
     display: none;
 }
 
+.addListingButton{
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addListingButton img{
+    height: 80%;
+    aspect-ratio: 1;
+}
+
 .settings {
     position: absolute;
     top: 0;

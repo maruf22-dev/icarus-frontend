@@ -92,13 +92,20 @@
 }
 
 .app_title {
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     margin: 0;
     font-size: 2rem;
     color: #000000;
     font-weight: bolder;
     font-family: "Montserrat", sans-serif;
+    grid-template-columns: 3fr 1fr;
+}
+
+.app_title img{
+    height: 30% ;
+    aspect-ratio: 1;
 }
 
 .identity {

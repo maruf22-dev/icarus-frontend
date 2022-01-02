@@ -108,6 +108,7 @@ const Profile = () => {
                     </div>
                     <div className={styles.app_title}>
                         <p>Self Profile</p>
+                        <img alt="" src={"../add.png"} onClick={() => { router.push("/add-listing") }} />
                     </div>
                     <div className={styles.logout}>
                         <div></div>

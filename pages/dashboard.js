@@ -35,7 +35,7 @@ const Dashboard = () => {
                                 <p>Maps</p>
                             </div>
                             <div className={styles.mobile_link_button}>
-                                <img alt="" src={"../nav_maps.png"} />
+                                <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@ const Dashboard = () => {
                     <div className={styles.main}>
                         <div className={styles.navbar}>
                             <div className={styles.navlinks}>
-                                <img alt="" src={"../nav_maps.png"} />
+                                <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
                                 <img alt="" src={"../chatter_icon.png"} onClick={() => { router.push("/chatter") }} />
                                 <img alt="" src={"../nav_profile.png"} onClick={() => { router.push("/profile") }}/>
                             </div>
