@@ -59,30 +59,25 @@ export function AppWrapper({ children }) {
   }, [profileID, profileEmail, profileName, profilePassword, loggedIn, recieverID, threadName]);
 
   let updateThreadContextFromBackend = async () => {
-    let demo = [
-      {
-        userID: "1asd",
-        threadName: "Jack Sparrow",
-        threadPictureLink: ""
-      },
-      {
-        userID: "asd2",
-        threadName: "Roberto Carlos",
-        threadPictureLink: ""
+    let tempHistory = [];
+    let users = await axios.post(
+      `${BACKEND_URL}/api/v1/database/getuser?HOST=${SQL_DB_INFO}`, {}
+    );
 
-      },
-      {
-        userID: "3assda",
-        threadName: "Bennedict",
-        threadPictureLink: ""
-      },
-      {
-        userID: "4asd",
-        threadName: "Arthur donal coyale",
-        threadPictureLink: ""
+    let all = [];
+    let user = users.data.data.data;
+    for (let i = 0; i < user.length; i++) {
+      if (user[i].userID === profileID) {
+        continue;
       }
-    ]
-    setAllThreadContext(demo);
+      let x = {
+        userID: user[i].userID,
+        threadName: user[i].name,
+        threadPictureLink: '',
+      }
+      all = [...all, x];
+    }
+    setAllThreadContext(all);
   }
   // curl -d '{"userName" : "user", "userID" : "UID", "email" : "email", "password" : "*****"}' 
   // -H 'Content-Type: application/json' 

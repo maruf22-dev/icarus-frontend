@@ -1,4 +1,5 @@
 import styles from '../../styles/chat.module.css'
+import axios from 'axios';
 const io = require("socket.io-client");
 import InputEmoji from 'react-input-emoji';
 import { useState, useEffect, useRef } from 'react'
@@ -9,7 +10,13 @@ import router, { useRouter } from 'next/router'
 import Image from 'next/image'
 
 
-const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
+const BACKEND_URL = 'http://localhost:3001';
+// BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+const SQL_DB_INFO = 'LOCAL';
+// SQL_DB_INFO = 'WEB';
+
+// const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
+const SOCKET_LINK = "http://localhost:3001";
 const socket = io.connect(SOCKET_LINK);
 
 
@@ -77,6 +84,25 @@ export default function Chat() {
             timestamp: Date.now(),
         });
         setText('');
+        // let texts = await axios.post(
+        //     `${BACKEND_URL}/api/v1/database/getmessages?HOST=${SQL_DB_INFO}`, {}
+        // );
+        // console.log(texts);
+        // let newMessages=[];
+        // let messages = texts.data.data.data;
+        // for (let i = 0; i < messages.length; i++) {
+        //     let message = {
+        //         messageID: messages[i].msgID,
+        //         senderID: messages[i].senderID,
+        //         senderName: messages[i].profileName,
+        //         recieverID: messages[i].recieverID,
+        //         senderProfileImageLink: null,
+        //         messageText: messages[i].text,
+        //         timestamp: messages[i].timeSent,
+        //     }
+        //     newMessages=[...newMessages,message];
+        // }
+        // setMessages(newMessages);
     }
 
     // changes text state based on input bar change
@@ -94,8 +120,15 @@ export default function Chat() {
             setContextMessages([]);
             return;
         }
+        let result = [];
+        for (let i = 0; i < allThreadContext.length; i++) {
+            if (profileID === allThreadContext[i].userID)
+                continue;
+            if (allThreadContext[i].threadName.includes(keyword))
+                result = [...result, allThreadContext[i]];
+        }
         // let filteredUsers = filterMessageContextByKeyword(allThreadContext, keyword.toLowerCase(), searchContext);
-        setContextMessages(allThreadContext);
+        setContextMessages(result);
     }
 
     //
@@ -127,8 +160,29 @@ export default function Chat() {
     // updation of thread context in the APP_CONTEXT
     useEffect(async () => {
         await updateThreadContextFromBackend();
+        let texts = await axios.post(
+            `${BACKEND_URL}/api/v1/database/getmessages?HOST=${SQL_DB_INFO}`, {}
+        );
+        let newMessages=[];
+        let messages = texts.data.data.data;
+        console.log(getThreadId(senderID, recieverID));
+        for (let i = 0; i < messages.length; i++) {
+            if(messages[i].threadID!==getThreadId(senderID, recieverID))
+                continue;
+            let message = {
+                messageID: messages[i].msgID,
+                senderID: messages[i].senderID,
+                senderName: messages[i].senderName,
+                recieverID: messages[i].recieverID,
+                senderProfileImageLink: null,
+                messageText: messages[i].text,
+                timestamp: messages[i].timeSent,
+            }
+            newMessages=[...newMessages,message];
+        }
+        setMessages(newMessages);
         inputBarRef.current?.focus();
-    }, []);
+    }, [senderID]);
 
     // scroll to current text if text recieved
     useEffect(() => {
