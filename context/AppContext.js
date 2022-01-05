@@ -16,12 +16,12 @@ export function AppWrapper({ children }) {
   const [appLevelChange, setAppLevelChange] = useState(false);
   const [threadName, setThreadName] = useState("");
 
+  // BACKEND_URL = 'http://localhost:3001';
+  // SQL_DB_INFO = 'LOCAL';
   let BACKEND_URL;
   let SQL_DB_INFO;
-  BACKEND_URL = 'http://localhost:3001';
-  // BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-  SQL_DB_INFO = 'LOCAL';
-  // SQL_DB_INFO = 'WEB';
+  BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+  SQL_DB_INFO = 'WEB';
   let refreshed = false;
   let router = useRouter();
   useEffect(() => {

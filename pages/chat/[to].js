@@ -10,13 +10,15 @@ import router, { useRouter } from 'next/router'
 import Image from 'next/image'
 
 
-const BACKEND_URL = 'http://localhost:3001';
-// BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-const SQL_DB_INFO = 'LOCAL';
-// SQL_DB_INFO = 'WEB';
+// const BACKEND_URL = 'http://localhost:3001';
+// const SQL_DB_INFO = 'LOCAL';
+let BACKEND_URL;
+let SQL_DB_INFO;
+BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+SQL_DB_INFO = 'WEB';
 
-// const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
-const SOCKET_LINK = "http://localhost:3001";
+// const SOCKET_LINK = "http://localhost:3001";
+const SOCKET_LINK = "https://icarus-backend.herokuapp.com";
 const socket = io.connect(SOCKET_LINK);
 
 

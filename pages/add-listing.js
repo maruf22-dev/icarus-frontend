@@ -25,10 +25,12 @@ const Map = () => {
         }
     );
 
-    const BACKEND_URL = 'http://localhost:3001';
-        // BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-        const SQL_DB_INFO = 'LOCAL';
-        // SQL_DB_INFO = 'WEB';
+    // const BACKEND_URL = 'http://localhost:3001';
+    // const SQL_DB_INFO = 'LOCAL';
+    let BACKEND_URL;
+    let SQL_DB_INFO;
+    BACKEND_URL = 'https://icarus-backend.herokuapp.com'
+    SQL_DB_INFO = 'WEB';
 
     const blocks = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
     const sizeLimit =
@@ -101,34 +103,34 @@ const Map = () => {
         setSearchKeyWord(keyword);
     }
     async function addListing() {
-        let id=uuid();
+        let id = uuid();
         let area = await axios.post(
             `${BACKEND_URL}/api/v1/database/insertarea?HOST=${SQL_DB_INFO}`, {
-                areaID:id,
-                latitude:latitude,
-                longitude:longitude,
-            }
+            areaID: id,
+            latitude: latitude,
+            longitude: longitude,
+        }
         );
         let listing = await axios.post(
             `${BACKEND_URL}/api/v1/database/insertlistings?HOST=${SQL_DB_INFO}`, {
-                listID:id,
-                listedBy:'',
-                size:currentSize,
-                rent:currentRent,
-                beds:currentBedroom,
-                baths:currentBathroom,
-                aptNo:'',
-                house:'',
-                road:'',
-                block:selectedBlock,
-                location:'Bashundhara R/A',
-                latitude:latitude,
-                longitude:longitude,
-                vacancy:1,
-                listingArea:id,
-            }
+            listID: id,
+            listedBy: '',
+            size: currentSize,
+            rent: currentRent,
+            beds: currentBedroom,
+            baths: currentBathroom,
+            aptNo: '',
+            house: '',
+            road: '',
+            block: selectedBlock,
+            location: 'Bashundhara R/A',
+            latitude: latitude,
+            longitude: longitude,
+            vacancy: 1,
+            listingArea: id,
+        }
         );
-        
+
     }
     return (
         <>
@@ -297,7 +299,7 @@ const Map = () => {
                     </div>
                 }
                 <div className={styles.addListingButton}>
-                    <img alt="" src={"../add.png"} onClick={async ()=> {
+                    <img alt="" src={"../add.png"} onClick={async () => {
                         notify('Listing Added Successfully!');
                         await addListing();
                     }} />
@@ -345,80 +347,10 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, la
         keyboard: false,
     });
 
-    
+
 
 
     const mapStyle = "mapbox://styles/dev-icarus/ckxnarrj65qbd15ugbg9xwhgn";
-    const areaInfo = [
-        // area object
-        {
-            latitude: 23.826,
-            longitude: 90.421,
-            listings: [
-                {
-                    id: "asdljkjasldk0",
-                    latitude: 23.826,
-                    longitude: 90.421,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                },
-            ]
-        },
-        // area object
-        {
-            latitude: 23.826,
-            longitude: 90.425,
-            listings: [
-                {
-                    id: "asdljkjasldk0",
-                    latitude: 23.826,
-                    longitude: 90.421,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                },
-                {
-                    id: "asdljkjasldk1",
-                    latitude: 23.816,
-                    longitude: 90.425,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                }
-            ]
-        }
-    ]
-
-
-
 
     function inBounds(latitude, longitude) {
         const bounds =
@@ -506,6 +438,11 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, la
                 }
 
             </ReactMapGL>
+
+            <div>
+                ami
+                tui
+            </div>
 
         </div >
 

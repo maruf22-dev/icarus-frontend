@@ -5,10 +5,12 @@ import { useAppContext } from '../context/AppContext';
 import styles from '../styles/chatter.module.css'
 import { useState, useEffect } from 'react';
 
-const BACKEND_URL = 'http://localhost:3001';
-// BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-const SQL_DB_INFO = 'LOCAL';
-// SQL_DB_INFO = 'WEB';
+// const BACKEND_URL = 'http://localhost:3001';
+// const SQL_DB_INFO = 'LOCAL';
+let BACKEND_URL;
+let SQL_DB_INFO;
+BACKEND_URL = 'https://icarus-backend.herokuapp.com';
+SQL_DB_INFO = 'WEB';
 
 
 

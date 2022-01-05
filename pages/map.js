@@ -6,10 +6,12 @@ import styles from '../styles/map.module.css'
 import ReactSlider from 'react-slider'
 import { useRouter } from 'next/router';
 
-const BACKEND_URL = 'http://localhost:3001';
-// BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
-const SQL_DB_INFO = 'LOCAL';
-// SQL_DB_INFO = 'WEB';
+// const BACKEND_URL = 'http://localhost:3001';
+// const SQL_DB_INFO = 'LOCAL';
+let BACKEND_URL;
+let SQL_DB_INFO;
+BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+SQL_DB_INFO = 'WEB';
 
 const API_KEY = "pk.eyJ1IjoiZGV2LWljYXJ1cyIsImEiOiJja3htOTd4YnAwYjBpMm9wN2V1dXN0enBxIn0.imngKPcStcncOKT9-kD3WA";
 const Map = () => {
@@ -63,6 +65,13 @@ const Map = () => {
         NO: 'No'
     }
 
+    const PAGE =
+    {
+        MAP: "MAP",
+        SETTINGS: "SETTINGS",
+        ALL: "ALL",
+    }
+
     const router = useRouter();
 
 
@@ -77,6 +86,7 @@ const Map = () => {
     const [roomtype, setRoomtype] = useState(ROOM_TYPE.SINGLE);
     const [searchKeyWord, setSearchKeyWord] = useState("");
     const [selectedListing, setSelectedListing] = useState(null);
+    const [selectedPage, setSelectedPage] = useState(PAGE.ALL)
 
 
     // changes state based on search input bar change
@@ -88,16 +98,23 @@ const Map = () => {
     const [list, setList] = useState([]);
     let mainListings = [];
 
+    useEffect(() => {
+        if (viewPort.width < 758) setSelectedPage(PAGE.MAP);
+        else setSelectedPage(PAGE.ALL);
+    }, [viewPort])
     useEffect(async () => {
         let listing = await axios.post(
-            `${BACKEND_URL}/api/v1/database/getalllisting?HOST=${SQL_DB_INFO}`, {
-
-        }
+            `${BACKEND_URL}/api/v1/database/getalllisting?HOST=${SQL_DB_INFO}`, {}
         );
-        if(list.length===0)
+        if (listing && !list || list.length === 0) {
             setList(listing.data.data.data);
+            console.log('current listings from database');
+        }
+
+        console.log(list);
+        console.log(1);
+
         for (let i = 0; i < list.length; i++) {
-            console.log(list);
             let x = {
                 id: list.listID,
                 latitude: list.latitude,
@@ -107,31 +124,27 @@ const Map = () => {
                         id: list.listID,
                         latitude: list.latitude,
                         longitude: list.longitude,
-                        address: `Block : ${list.block}, Bashundhara R/A, Dhaka`,
+                        address: list.block,
                         size: list.size,
                         rent: list.rent,
-                        numOfBeds: list.beds,
+                        numOfBeds: list.aptNo,
                         numOfBaths: list.baths,
                         images: [],
-                        
+
                     }
                 ]
             }
-            mainListings=[...mainListings, x];
+            mainListings = [...mainListings, x];
         }
-        
+
     }, [list]);
 
-    
+
 
     return (
         <>
-            <MapBox
-                viewPort={viewPort} setViewPort={setViewPort}
-                selectedListing={selectedListing} setSelectedListing={setSelectedListing}
-                mainListings={list}
-            />
-            <div className={styles.settings}>
+
+            <div className={styles.settings} style={{zIndex: 100}}>
                 <div className={styles.page_title}>
                     <div className={styles.home_icon}>
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
@@ -298,18 +311,31 @@ const Map = () => {
                     </div>
                 }
                 <div className={styles.phone_navigator}>
-                    <div className={styles.phone_nav_icon}>
-                        <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/dashboard") }} />
+                    <div className={styles.phone_nav_icon}
+                        onClick={() => { setSelectedPage(PAGE.MAP) }}
+                        style={(selectedPage === PAGE.MAP) ? { backgroundColor: "white", zIndex: 200 } : {}}
+                    >
+                        <img alt="" src={"../nav_maps.png"} />
                     </div>
                     <div className={styles.phone_nav_icon}>
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
-                    <div className={styles.phone_nav_icon}>
-                        <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                    <div className={styles.phone_nav_icon}
+                        onClick={() => { setSelectedPage(PAGE.SETTINGS) }}
+                        style={(selectedPage === PAGE.SETTINGS) ? { backgroundColor: "white" } : {}}
+                    >
+                        <img alt="" src={"../cross_icon.png"} />
                     </div>
                 </div>
 
             </div>
+
+            <MapBox
+                viewPort={viewPort} setViewPort={setViewPort}
+                selectedListing={selectedListing} setSelectedListing={setSelectedListing}
+                mainListings={list}
+                style={{zIndex: 100}}
+            />
         </>
     )
 }
@@ -340,74 +366,6 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
 
 
     const mapStyle = "mapbox://styles/dev-icarus/ckxnarrj65qbd15ugbg9xwhgn";
-    const areaInfo = [
-        // area object
-        {
-            latitude: 23.826,
-            longitude: 90.421,
-            listings: [
-                {
-                    id: "asdljkjasldk0",
-                    latitude: 23.826,
-                    longitude: 90.421,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                },
-            ]
-        },
-        // area object
-        {
-            latitude: 23.826,
-            longitude: 90.425,
-            listings: [
-                {
-                    id: "asdljkjasldk0",
-                    latitude: 23.826,
-                    longitude: 90.421,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                },
-                {
-                    id: "asdljkjasldk1",
-                    latitude: 23.816,
-                    longitude: 90.425,
-                    address: "House 88/4 bashundhara c block, Dhaka",
-                    size: 1000,
-                    rent: 10000,
-                    numOfBeds: 10,
-                    numOfBaths: 10,
-                    gender: 'Male',
-                    restriction: 'No',
-                    images: [
-                        "oihasdasdknaklsdn",
-                        "kjahsdkjhsadjasdk",
-                        "askhjdkashdkashdh",
-                    ],
-                }
-            ]
-        }
-    ]
-
 
 
 
@@ -432,7 +390,6 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
         let longitudeInBound = (bounds.ul.longitude < longitude) && (bounds.dr.longitude > longitude);
         return latitudeInBound && longitudeInBound;
     }
-    console.log(mainListings);
     return (
         <div className={styles.map}>
             <ReactMapGL {...viewPort}
@@ -446,12 +403,17 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
 
                     mainListings.map((current, index) =>
                         <div key={index}>
-                            <Marker latitude={parseFloat(current.latitude)} longitude={parseFloat(current.longitude)}>
-                                <div className={styles.list_image}>
-                                    <img alt="" src={"../map_point.png"} onClick={() => { setSelectedListing(current) }
-                                    } />
-                                </div>
-                            </Marker>
+                            {(current.vacancy === "1") ?
+                                <Marker latitude={parseFloat(current.latitude)} longitude={parseFloat(current.longitude)}>
+                                    <div className={styles.list_image}>
+                                        <img alt="" src={"../map_point.png"} onClick={() => { setSelectedListing(current) }
+                                        } />
+                                    </div>
+                                </Marker>
+                                :
+                                (<></>)
+                            }
+
                         </div>
                     )
                 }
@@ -466,31 +428,34 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
 
                         >
                             <div className={styles.popup}>
-                                
-                                        <div key={selectedListing.id} className={styles.popup_list}>
-                                            <div className={styles.popup_list_single}>
-                                                {/* Listing {index + 1} */}
-                                            </div>
-                                            <div className={styles.popup_list_single}>
-                                                Address: {selectedListing.address}
-                                            </div>
-                                            <div className={styles.popup_list_single}>
-                                                Rent: {selectedListing.rent}
-                                            </div>
-                                            <div className={styles.popup_list_single}>
-                                                Rooms: {selectedListing.numOfBeds} bed and {selectedListing.numOfBaths}
-                                            </div>
-                                            <div className={styles.popup_list_single}>
-                                                Gender: {selectedListing.gender}
 
-                                            </div>
-                                            <div className={styles.popup_list_single}>
-                                                <div className={styles.popup_list_image}>
-                                                    <img alt="" src={"../go_forward_icon.png"} onClick={() => { }} />
-                                                </div>
-                                            </div>
+                                <div key={selectedListing.id} className={styles.popup_list}>
+                                    <div className={styles.popup_list_single}>
+                                        Size : {selectedListing.size} sqft
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        Location: {selectedListing.location}
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        Block: {selectedListing.block}
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        Rent: {selectedListing.rent} BDT
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        Rooms: {selectedListing.beds} bed and {selectedListing.baths} baths
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        Gender: {selectedListing.gender}
+
+                                    </div>
+                                    <div className={styles.popup_list_single}>
+                                        <div className={styles.popup_list_image}>
+                                            <img alt="" src={"../go_forward_icon.png"} onClick={() => { }} />
                                         </div>
-                                
+                                    </div>
+                                </div>
+
                             </div>
                         </Popup>
                     )

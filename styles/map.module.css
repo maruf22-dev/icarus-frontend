@@ -286,6 +286,11 @@
 
 
 @media only screen and (max-width : 768px) {
+    .map 
+    {
+        width: 100%;
+        left: 0%;
+    }
     .settings{
         width: 100%;
     }
