@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { React, useEffect, useState } from 'react'
 import styles from '../styles/profile.module.css'
 import { AppContext, useAppContext } from '../context/AppContext';
+import axios from 'axios';
 
 
 const USERTYPE =
@@ -10,26 +11,88 @@ const USERTYPE =
     LISTER: 'LISTER'
 }
 
+let BACKEND_URL;
+let SQL_DB_INFO;
+BACKEND_URL = 'https://icarus-backend.herokuapp.com'
+SQL_DB_INFO = 'WEB';
+
 const Profile = () => {
     const router = useRouter();
-    const { appLevelChange, setAppLevelChange, setLoggedIn, loggedIn } = useAppContext();
-    const [info, setInfo] = useState(null);
+    const { appLevelChange, setAppLevelChange, setLoggedIn, loggedIn, profileID } = useAppContext();
+    const [info, setInfo] = useState({
+        name: '',
+        bio: '',
+        email: '',
+        phone: '',
+        occupation: '',
+        address: '',
+        usertype: USERTYPE.RENTER,
+    });
     const [barPressed, setBarPressed] = useState(false);
-    const [NameEditPressed, setNameEditPressed] = useState(false);
-    const [BioEditPressed, setBioEditPressed] = useState(false);
-    const [ContactEditPressed, setContactEditPressed] = useState(false);
-    const [InfoEditPressed, setInfoEditPressed] = useState(false);
-    useEffect(() => {
-        setInfo({
-            name: 'Abidur Rahman Khandakar Abir',
-            bio: 'bluh bluh bluh',
-            email: 'example_mail@gmail.com',
-            phone: '0172698213',
-            occupation: 'student',
-            address: '88/3 C block, bashundhara, dhaka',
-            usertype: USERTYPE.LISTER,
-        })
-    }, [])
+    const [NameEditPressed, setNameEditPressed] = useState(null);
+    const [BioEditPressed, setBioEditPressed] = useState(null);
+    const [ContactEditPressed, setContactEditPressed] = useState(null);
+    const [InfoEditPressed, setInfoEditPressed] = useState(null);
+
+
+    useEffect(async () => {
+
+
+
+        let URL = `${BACKEND_URL}/api/v1/database/getuser?HOST=${SQL_DB_INFO}`;
+        let result = await axios.post(
+            URL,
+            {
+            }
+        );
+
+        let array = null;
+        array = result?.data?.data?.data;
+        if (array && profileID !== "") {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].userID === profileID) {
+
+                    setInfo({
+                        name: array[i].name,
+                        bio: array[i].bio,
+                        email: array[i].email,
+                        phone: array[i].phoneNumber,
+                        occupation: array[i].occupation,
+                        address: array[i].address,
+                        usertype: array[i].usertype,
+                    });
+
+                    console.log(array[i]);
+                    break;
+                }
+            }
+
+        }
+
+    }, [profileID]);
+
+
+    useEffect(async () => {
+        if ((InfoEditPressed === false || BioEditPressed === false || NameEditPressed === false || ContactEditPressed === false) &&
+            (profileID !== "" && info && info.name !== '')) {
+            console.log('change it');
+            let URL = `${BACKEND_URL}/api/v1/database/updateprofile?HOST=${SQL_DB_INFO}`;
+            let result = await axios.post(
+                URL,
+                {
+                    profilepic: null,
+                    username: info.name,
+                    bio: info.bio,
+                    phone: info.phone,
+                    email: info.email,
+                    occupation: info.occupation,
+                    address: info.address,
+                    usertype: info.usertype,
+                    userID: profileID
+                }
+            );
+        }
+    }, [profileID, InfoEditPressed, BioEditPressed, ContactEditPressed, NameEditPressed])
 
     useEffect(() => {
         const verified = localStorage.getItem('loggedIn');
@@ -58,7 +121,7 @@ const Profile = () => {
                                 <p>Maps</p>
                             </div>
                             <div className={styles.mobile_link_button}>
-                                <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
+                                <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }} />
                             </div>
                         </div>
 
@@ -77,7 +140,7 @@ const Profile = () => {
                                 <p>Dashboard</p>
                             </div>
                             <div className={styles.mobile_link_button}>
-                                <img alt="" src={"../home_icon.png"}  onClick={() => { router.push("/dashboard") }}/>
+                                <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
                             </div>
                         </div>
 
@@ -100,7 +163,7 @@ const Profile = () => {
             <div className={styles.profile_page}>
                 <div className={styles.navbar}>
                     <div className={styles.navlinks}>
-                        <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }}/>
+                        <img alt="" src={"../nav_maps.png"} onClick={() => { router.push("/map") }} />
                         <img alt="" src={"../chatter_icon.png"} onClick={() => { router.push("/chatter") }} />
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
@@ -108,7 +171,12 @@ const Profile = () => {
                     </div>
                     <div className={styles.app_title}>
                         <p>Self Profile</p>
-                        <img alt="" src={"../add.png"} onClick={() => { router.push("/add-listing") }} />
+                        {
+                            (info && info.usertype === USERTYPE.LISTER) ?
+                                <img alt="" src={"../add.png"} onClick={() => { router.push("/add-listing") }} />
+                                :
+                                <></>
+                        }
                     </div>
                     <div className={styles.logout}>
                         <div></div>

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/visit.module.css'
 import router, { useRouter } from 'next/router'
+import axios from 'axios';
 
 const USERTYPE =
 {
     RENTER: 'RENTER',
     LISTER: 'LISTER'
 }
-function Profile() {
+function Profile({pageProfile}) {
+
+    console.log(pageProfile);
+
 
 
     const [basicUserInfo, setBasicUserInfo] = useState({
@@ -28,17 +32,17 @@ function Profile() {
     useEffect(() => {
         setBasicUserInfo({
             id: "asdasd",
-            name: "Abidur Rahman Khandakar Abir",
-            bio: "I am a chutiya, I am a proud Chutiya and lorem ipsum clum ssowrilal",
-            type: USERTYPE.LISTER,
+            name: pageProfile.name,
+            bio: pageProfile.bio,
+            type: pageProfile.usertype,
             numberOfApartments: 4,
-            livesIn: "Bashundhara, Dhaka",
-            profession: "student",
+            livesIn: pageProfile.address,
+            profession: pageProfile.occupation,
             rating: "4"
         });
         setContactInfo({
-            mobile: "01726442155",
-            email: "amichutiya@chutiya.com",
+            mobile: pageProfile.phone,
+            email: pageProfile.email,
         });
 
     }, [])
@@ -329,6 +333,68 @@ function Listing({ current }) {
     )
 }
 
+
+
+export const getServerSideProps = async pageContext => {
+    const notApplicable =
+    {
+        notFound: true
+    }
+    const pageProfileID = pageContext.query.profileid;
+    console.log(pageProfileID);
+
+    let BACKEND_URL;
+    let SQL_DB_INFO;
+    BACKEND_URL = 'https://icarus-backend.herokuapp.com'
+    SQL_DB_INFO = 'WEB';
+
+
+    let URL = `${BACKEND_URL}/api/v1/database/getuser?HOST=${SQL_DB_INFO}`;
+    let result = await axios.post(
+        URL,
+        {
+        }
+    );
+    let pageProfile = null;
+    let array = null;
+    array = result?.data?.data?.data;
+    if(!array) return notApplicable;
+
+    if (array && pageProfileID !== "") {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].userID === pageProfileID) {
+                pageProfile = {
+                    name: array[i].name,
+                    bio: array[i].bio,
+                    email: array[i].email,
+                    phone: array[i].phoneNumber,
+                    occupation: array[i].occupation,
+                    address: array[i].address,
+                    usertype: array[i].usertype,
+                };
+                break;
+            }
+        }
+    }
+
+    if(pageProfile === null) return notApplicable;
+
+    console.log(pageProfile);
+
+
+    return { props: { pageProfile: pageProfile } }
+
+    // try {
+    //     if (articleData !== undefined) {
+    //         return notApplicable;
+    //     }
+    //     const props = { pageProfileID: slug };
+    //     return { props: props };
+    // }
+    // catch (err) {
+    //     return notApplicable;
+    // }
+};
 
 export default Profile
 

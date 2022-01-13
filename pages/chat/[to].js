@@ -14,7 +14,7 @@ import Image from 'next/image'
 // const SQL_DB_INFO = 'LOCAL';
 let BACKEND_URL;
 let SQL_DB_INFO;
-BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+BACKEND_URL = 'https://icarus-backend.herokuapp.com'
 SQL_DB_INFO = 'WEB';
 
 // const SOCKET_LINK = "http://localhost:3001";
@@ -151,7 +151,12 @@ export default function Chat() {
         });
 
         socket.on("recieve_message", (recievedMessage) => {
-            if ((recievedMessage.senderID === profileID) && (recievedMessage.recieverID === recieverID)) {
+            console.log('message recieved');
+            if (
+                ((recievedMessage.senderID === profileID) && (recievedMessage.recieverID === recieverID))
+                ||
+                ((recievedMessage.senderID === recievedMessage) && (recievedMessage.recieverID === profileID))
+            ) {
                 setMessages((messages) => [...messages, recievedMessage]);
             }
         });
@@ -161,30 +166,32 @@ export default function Chat() {
 
     // updation of thread context in the APP_CONTEXT
     useEffect(async () => {
-        await updateThreadContextFromBackend();
-        let texts = await axios.post(
-            `${BACKEND_URL}/api/v1/database/getmessages?HOST=${SQL_DB_INFO}`, {}
-        );
-        let newMessages=[];
-        let messages = texts.data.data.data;
-        console.log(getThreadId(senderID, recieverID));
-        for (let i = 0; i < messages.length; i++) {
-            if(messages[i].threadID!==getThreadId(senderID, recieverID))
-                continue;
-            let message = {
-                messageID: messages[i].msgID,
-                senderID: messages[i].senderID,
-                senderName: messages[i].senderName,
-                recieverID: messages[i].recieverID,
-                senderProfileImageLink: null,
-                messageText: messages[i].text,
-                timestamp: messages[i].timeSent,
+        if (senderID !== "") {
+            await updateThreadContextFromBackend();
+            let texts = await axios.post(
+                `${BACKEND_URL}/api/v1/database/getmessages?HOST=${SQL_DB_INFO}`, {}
+            );
+            let newMessages = [];
+            let messages = texts.data.data.data;
+            console.log(getThreadId(senderID, recieverID));
+            for (let i = 0; i < messages.length; i++) {
+                if (messages[i].threadID !== getThreadId(senderID, recieverID))
+                    continue;
+                let message = {
+                    messageID: messages[i].msgID,
+                    senderID: messages[i].senderID,
+                    senderName: messages[i].senderName,
+                    recieverID: messages[i].recieverID,
+                    senderProfileImageLink: null,
+                    messageText: messages[i].text,
+                    timestamp: messages[i].timeSent,
+                }
+                newMessages = [...newMessages, message];
             }
-            newMessages=[...newMessages,message];
+            setMessages(newMessages);
+            inputBarRef.current?.focus();
         }
-        setMessages(newMessages);
-        inputBarRef.current?.focus();
-    }, [senderID]);
+    }, [senderID, recieverID]);
 
     // scroll to current text if text recieved
     useEffect(() => {

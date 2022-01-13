@@ -10,14 +10,14 @@ import { useRouter } from 'next/router';
 // const SQL_DB_INFO = 'LOCAL';
 let BACKEND_URL;
 let SQL_DB_INFO;
-BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+BACKEND_URL = 'https://icarus-backend.herokuapp.com'
 SQL_DB_INFO = 'WEB';
 
 const API_KEY = "pk.eyJ1IjoiZGV2LWljYXJ1cyIsImEiOiJja3htOTd4YnAwYjBpMm9wN2V1dXN0enBxIn0.imngKPcStcncOKT9-kD3WA";
 const Map = () => {
 
 
-    const blocks = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    const blocks = ["Any", "A", "B", "C", "D", "E", "F", "G", "H", "I"];
     const sizeLimit =
     {
         start: 1000,
@@ -26,7 +26,7 @@ const Map = () => {
     const rentLimit =
     {
         start: 1000,
-        end: 10000,
+        end: 100000,
     }
     const bedroomLimit =
     {
@@ -76,7 +76,7 @@ const Map = () => {
 
 
     const [blocksDropDownPressed, setBlocksDropDownPressed] = useState(false);
-    const [selectedBlock, setSelectedBlock] = useState("A");
+    const [selectedBlock, setSelectedBlock] = useState("Any");
     const [currentRent, setCurrentRent] = useState(rentLimit.end);
     const [currentSize, setCurrentSize] = useState(sizeLimit.end);
     const [currentBedroom, setCurrentBedroom] = useState(bedroomLimit.end);
@@ -96,23 +96,46 @@ const Map = () => {
     }
 
     const [list, setList] = useState([]);
+    const [filteredList, setFilteredList] = useState([]);
     let mainListings = [];
 
     useEffect(() => {
         if (viewPort.width < 758) setSelectedPage(PAGE.MAP);
         else setSelectedPage(PAGE.ALL);
-    }, [viewPort])
+    }, [viewPort]);
+
+
+
+    useEffect(() => {
+
+        if (list) {
+            console.log('current listings from database');
+            let tempFilteredList = [];
+            for (let i = 0; i < list.length; i++) {
+                console.log(list[i]);
+                if (selectedBlock !== 'Any' && list[i].block !== selectedBlock) continue;
+                if (list[i].vacancy !== '1') continue;
+                if (currentSize < list[i])
+                    continue;
+                if (currentRent < list[i].rent)
+                    continue;
+
+                tempFilteredList = [...tempFilteredList, list[i]];
+            }
+            setFilteredList(tempFilteredList);
+        }
+
+    }, [selectedBlock, currentRent, currentSize, currentBedroom, currentBathroom, gender, restriction, roomtype, list]);
+
+
     useEffect(async () => {
         let listing = await axios.post(
             `${BACKEND_URL}/api/v1/database/getalllisting?HOST=${SQL_DB_INFO}`, {}
         );
         if (listing && !list || list.length === 0) {
             setList(listing.data.data.data);
-            console.log('current listings from database');
         }
 
-        console.log(list);
-        console.log(1);
 
         for (let i = 0; i < list.length; i++) {
             let x = {
@@ -141,10 +164,13 @@ const Map = () => {
 
 
 
+
+
     return (
         <>
 
-            <div className={styles.settings} style={{zIndex: 100}}>
+            <div className={styles.settings} style={{ zIndex: 100 }}>
+
                 <div className={styles.page_title}>
                     <div className={styles.home_icon}>
                         <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
@@ -153,29 +179,26 @@ const Map = () => {
                         Map
                     </div>
                     <div className={styles.home_icon}>
-                        <img alt="" src={"../lisitings_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                        <img alt="" src={"../lisitings_icon.png"} 
+                        // onClick={() => { router.push("/dashboard") }}
+                         />
                     </div>
                 </div>
+
                 <div className={styles.search}>
                     <div className={styles.search_bar}>
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Search"
                             className={styles.searchbar}
-                            onChange={(e) => { handleSearch(e) }} />
+                            onChange={(e) => { handleSearch(e) }} /> */}
                     </div>
                     <div className={styles.search_button}>
-                        <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                        {/* <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} /> */}
                     </div>
                 </div>
-                <div className={styles.filter}>
-                    <div className={styles.filter_text}>
-                        Filter
-                    </div>
-                    <div className={styles.filter_button}>
-                        <img alt="" src={"../filter_icon.png"} onClick={() => { router.push("/dashboard") }} />
-                    </div>
-                </div>
+
+
                 <div className={styles.blocks_bar}>
                     <div className={styles.block_text}>Block</div>
                     <div className={styles.block_dropdown} onClick={() => setBlocksDropDownPressed(!blocksDropDownPressed)}>{selectedBlock}</div>
@@ -198,7 +221,8 @@ const Map = () => {
                     !blocksDropDownPressed &&
                     <div className={styles.price_slider}>
                         <div className={styles.rent_price}>
-                            Size : {currentSize} sqft
+                            Maximum Size : {currentSize}{(currentSize === sizeLimit.end) ? "+" : ""} sqft
+
                         </div>
                         <ReactSlider
                             min={sizeLimit.start}
@@ -310,37 +334,64 @@ const Map = () => {
                         </div>
                     </div>
                 }
-                <div className={styles.phone_navigator}>
-                    <div className={styles.phone_nav_icon}
-                        onClick={() => { setSelectedPage(PAGE.MAP) }}
-                        style={(selectedPage === PAGE.MAP) ? { backgroundColor: "white", zIndex: 200 } : {}}
-                    >
-                        <img alt="" src={"../nav_maps.png"} />
+                {/* <div className={styles.filter}>
+                  
+                    <div className={styles.filter_text}>
+                        Filter
                     </div>
-                    <div className={styles.phone_nav_icon}>
-                        <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                    <div className={styles.filter_button}>
+                        <img alt="" src={"../filter_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
-                    <div className={styles.phone_nav_icon}
-                        onClick={() => { setSelectedPage(PAGE.SETTINGS) }}
-                        style={(selectedPage === PAGE.SETTINGS) ? { backgroundColor: "white" } : {}}
-                    >
-                        <img alt="" src={"../cross_icon.png"} />
+                </div> */}
+
+                <div className={styles.search}>
+                    <div className={styles.search_bar}>
+                        {/* <input
+                            type="text"
+                            placeholder="Search"
+                            className={styles.searchbar}
+                            onChange={(e) => { handleSearch(e) }} /> */}
+                    </div>
+                    <div className={styles.search_button}>
+                        {/* <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} /> */}
                     </div>
                 </div>
+
+                {
+                    !blocksDropDownPressed && <div className={styles.phone_navigator}>
+                        <div className={styles.phone_nav_icon}
+                            onClick={() => { setSelectedPage(PAGE.MAP) }}
+                            style={(selectedPage === PAGE.MAP) ? { backgroundColor: "white", zIndex: 200 } : {}}
+                        >
+                            <img alt="" src={"../nav_maps.png"} />
+                        </div>
+                        <div className={styles.phone_nav_icon}>
+                            <img alt="" src={"../home_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                        </div>
+                        <div className={styles.phone_nav_icon}
+                            onClick={() => { setSelectedPage(PAGE.SETTINGS) }}
+                            style={(selectedPage === PAGE.SETTINGS) ? { backgroundColor: "white" } : {}}
+                        >
+                            <img alt="" src={"../cross_icon.png"} />
+                        </div>
+                    </div>
+                }
 
             </div>
 
             <MapBox
                 viewPort={viewPort} setViewPort={setViewPort}
                 selectedListing={selectedListing} setSelectedListing={setSelectedListing}
-                mainListings={list}
-                style={{zIndex: 100}}
+                mainListings={filteredList}
+                style={{ zIndex: 100 }}
             />
         </>
     )
 }
 
 const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, mainListings }) => {
+
+    let router = useRouter();
     React.useEffect(() => {
         function handleResize() {
             setViewPort({
@@ -430,9 +481,7 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
                             <div className={styles.popup}>
 
                                 <div key={selectedListing.id} className={styles.popup_list}>
-                                    <div className={styles.popup_list_single}>
-                                        Size : {selectedListing.size} sqft
-                                    </div>
+
                                     <div className={styles.popup_list_single}>
                                         Location: {selectedListing.location}
                                     </div>
@@ -443,15 +492,28 @@ const MapBox = ({ viewPort, setViewPort, selectedListing, setSelectedListing, ma
                                         Rent: {selectedListing.rent} BDT
                                     </div>
                                     <div className={styles.popup_list_single}>
+                                        Size : {selectedListing.size} sqft
+                                    </div>
+                                    <div className={styles.popup_list_single}>
                                         Rooms: {selectedListing.beds} bed and {selectedListing.baths} baths
                                     </div>
-                                    <div className={styles.popup_list_single}>
+                                    {/* <div className={styles.popup_list_single}>
                                         Gender: {selectedListing.gender}
-
-                                    </div>
+                                    </div> */}
                                     <div className={styles.popup_list_single}>
+                                        <div>
+                                            Go to Lister
+                                        </div>
                                         <div className={styles.popup_list_image}>
-                                            <img alt="" src={"../go_forward_icon.png"} onClick={() => { }} />
+                                            <img alt="" src={"../go_forward_icon.png"} onClick={() => {
+
+                                                console.log(selectedListing);
+
+                                                let link = '/visit/' + selectedListing.listedBy;
+                                                router.push(link)
+                                            }
+                                            }
+                                            />
                                         </div>
                                     </div>
                                 </div>

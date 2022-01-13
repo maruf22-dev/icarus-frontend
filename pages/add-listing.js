@@ -8,9 +8,12 @@ import { useRouter } from 'next/router';
 import { v4 as uuid } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AppContext, useAppContext } from '../context/AppContext';
 
 const API_KEY = "pk.eyJ1IjoiZGV2LWljYXJ1cyIsImEiOiJja3htOTd4YnAwYjBpMm9wN2V1dXN0enBxIn0.imngKPcStcncOKT9-kD3WA";
 const Map = () => {
+
+    const { appLevelChange, setAppLevelChange, setLoggedIn, loggedIn, profileID } = useAppContext();
 
     const notify = (message) => toast.dark(
         message,
@@ -114,7 +117,7 @@ const Map = () => {
         let listing = await axios.post(
             `${BACKEND_URL}/api/v1/database/insertlistings?HOST=${SQL_DB_INFO}`, {
             listID: id,
-            listedBy: '',
+            listedBy: profileID,
             size: currentSize,
             rent: currentRent,
             beds: currentBedroom,
@@ -151,18 +154,18 @@ const Map = () => {
                         <img alt="" src={"../lisitings_icon.png"} onClick={() => { router.push("/dashboard") }} />
                     </div>
                 </div>
-                {/* <div className={styles.search}>
+                <div className={styles.search}>
                     <div className={styles.search_bar}>
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Search"
                             className={styles.searchbar}
-                            onChange={(e) => { handleSearch(e) }} />
+                            onChange={(e) => { handleSearch(e) }} /> */}
                     </div>
                     <div className={styles.search_button}>
-                        <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} />
+                        {/* <img alt="" src={"../cross_icon.png"} onClick={() => { router.push("/dashboard") }} /> */}
                     </div>
-                </div> */}
+                </div>
 
                 <div className={styles.blocks_bar}>
                     <div className={styles.block_text}>Block</div>

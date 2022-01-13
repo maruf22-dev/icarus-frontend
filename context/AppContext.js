@@ -20,7 +20,7 @@ export function AppWrapper({ children }) {
   // SQL_DB_INFO = 'LOCAL';
   let BACKEND_URL;
   let SQL_DB_INFO;
-  BACKEND_URL = 'https://icarus-backend.herokuapp.com' 
+  BACKEND_URL = 'https://icarus-backend.herokuapp.com'
   SQL_DB_INFO = 'WEB';
   let refreshed = false;
   let router = useRouter();
@@ -65,18 +65,21 @@ export function AppWrapper({ children }) {
     );
 
     let all = [];
-    let user = users.data.data.data;
-    for (let i = 0; i < user.length; i++) {
-      if (user[i].userID === profileID) {
-        continue;
+    let user = users?.data?.data?.data;
+    if (user) {
+      for (let i = 0; i < user?.length; i++) {
+        if (user[i].userID === profileID) {
+          continue;
+        }
+        let x = {
+          userID: user[i].userID,
+          threadName: user[i].name,
+          threadPictureLink: '',
+        }
+        all = [...all, x];
       }
-      let x = {
-        userID: user[i].userID,
-        threadName: user[i].name,
-        threadPictureLink: '',
-      }
-      all = [...all, x];
     }
+
     setAllThreadContext(all);
   }
   // curl -d '{"userName" : "user", "userID" : "UID", "email" : "email", "password" : "*****"}' 

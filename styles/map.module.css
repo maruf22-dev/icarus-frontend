@@ -67,11 +67,10 @@
 }
 
 .search {
-    height: 10%;
+    height: 8%;
     display: grid;
     grid-template-columns: 3fr 1fr;
     place-items: center;
-    border-bottom: 1px solid #00000025;
 }
 
 .search_bar {
