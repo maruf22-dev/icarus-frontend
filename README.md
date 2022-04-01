@@ -3,4 +3,8 @@
 #Project Icarus
 #For CSE 311 Course
 
+#It solves housing crisis for students located at Bashundhara R/A, Dhaka. Using this service, both the owners of the house and and the students can benefit. Students can easily find gouses of their preferences without even going to the house. Therefore, it really easens hours of searching and convert it to moments.
+
+
+
 Change
